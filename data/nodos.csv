@@ -1,0 +1,40 @@
+id,nombre,tipo,provincia,lat,lon,oferta,almacenamiento,demanda_normal,demanda_alta
+CUS_BC,Bóveda central Wanchaq,boveda_central,Cusco,-13.528,-71.963,20000,,0,0
+URU_BR,Bóveda regional Urubamba,boveda_regional,Urubamba,-13.300,-72.120,1200,3500,0,0
+SIC_BR,Bóveda regional Sicuani,boveda_regional,Canchis,-14.268,-71.222,1000,3000,0,0
+QUI_BR,Bóveda regional Quillabamba,boveda_regional,La Convención,-12.860,-72.695,500,2500,0,0
+CUS_CEN,Agencia Cusco Centro,agencia,Cusco,-13.517,-71.979,,,1500,2600
+CUS_WAN,Agencia Wanchaq,agencia,Cusco,-13.525,-71.958,,,600,850
+SSB,Agencia San Sebastián,agencia,Cusco,-13.531,-71.935,,,700,1000
+SJE,Agencia San Jerónimo,agencia,Cusco,-13.546,-71.886,,,500,700
+SAN,Agencia Santiago,agencia,Cusco,-13.535,-71.990,,,450,600
+ANT,Agencia Anta,agencia,Anta,-13.471,-72.149,,,350,450
+LMT,Agencia Limatambo,agencia,Anta,-13.483,-72.444,,,80,100
+CHI,Agencia Chinchero,agencia,Urubamba,-13.392,-72.048,,,200,350
+PIS,Agencia Pisac,agencia,Calca,-13.422,-71.849,,,250,500
+CAL,Agencia Calca,agencia,Calca,-13.323,-71.956,,,350,500
+PAU,Agencia Paucartambo,agencia,Paucartambo,-13.317,-71.596,,,150,220
+URU_AG,Agencia Urubamba,agencia,Urubamba,-13.305,-72.116,,,400,700
+OLL,Agencia Ollantaytambo,agencia,Urubamba,-13.258,-72.263,,,300,650
+MPP,Agencia Machupicchu Pueblo,agencia,Urubamba,-13.155,-72.525,,,450,900
+QUI_AG,Agencia Quillabamba,agencia,La Convención,-12.866,-72.690,,,500,600
+ECH,Agencia Echarati,agencia,La Convención,-12.756,-72.581,,,200,250
+URC,Agencia Urcos,agencia,Quispicanchi,-13.686,-71.623,,,250,300
+OCO,Agencia Ocongate,agencia,Quispicanchi,-13.628,-71.387,,,200,250
+QCM,Agencia Quincemil,agencia,Quispicanchi,-13.233,-70.750,,,300,350
+COM,Agencia Combapata,agencia,Canchis,-14.101,-71.429,,,150,180
+YAN,Agencia Yanaoca,agencia,Canas,-14.218,-71.432,,,100,110
+SIC_AG,Agencia Sicuani,agencia,Canchis,-14.272,-71.228,,,600,700
+YAU,Agencia Yauri (Espinar),agencia,Espinar,-14.792,-71.408,,,450,500
+STO,Agencia Santo Tomás,agencia,Chumbivilcas,-14.449,-72.083,,,200,220
+AGT_MCP,Agente corresponsal Marcapata,agente,Quispicanchi,-13.500,-70.983,,,60,70
+STE,Agente corresponsal Santa Teresa,agente,La Convención,-13.131,-72.598,,,40,60
+ATM_PLZ,Cajero Plaza de Armas,cajero,Cusco,-13.516,-71.978,,,400,900
+ATM_SOL,Cajero Av. El Sol,cajero,Cusco,-13.522,-71.975,,,300,650
+ATM_AER,Cajero Aeropuerto,cajero,Cusco,-13.536,-71.939,,,200,450
+ATM_URU,Cajero Urubamba,cajero,Urubamba,-13.304,-72.115,,,100,200
+ATM_OLL,Cajero Ollantaytambo,cajero,Urubamba,-13.259,-72.264,,,80,200
+ATM_MPP,Cajero Machupicchu Pueblo,cajero,Urubamba,-13.154,-72.524,,,250,600
+ATM_SIC,Cajero Sicuani,cajero,Canchis,-14.271,-71.227,,,80,100
+SMA,Santa María,paso,La Convención,-12.958,-72.660,,,0,0
+HID,Hidroeléctrica,paso,La Convención,-13.177,-72.560,,,0,0

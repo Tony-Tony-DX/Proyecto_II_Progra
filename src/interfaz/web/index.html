@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes Financieras · Caja Municipal Andina</title>
+<link rel="stylesheet" href="/static/estilos.css">
+</head>
+<body>
+<div class="app">
+  <!-- ======================================================= navegación -->
+  <nav class="lateral">
+    <div class="marca">
+      <div class="logo">CMA</div>
+      <b>Caja Municipal Andina</b>
+      <span>Análisis y optimización de redes financieras · Cusco</span>
+    </div>
+    <button class="nav-item activo" data-ir="inicio"><span class="num">⌂</span>Inicio</button>
+    <div class="nav-sep">Módulos</div>
+    <button class="nav-item" data-ir="red"><span class="num">1</span>Gestión de la red</button>
+    <button class="nav-item" data-ir="fraude"><span class="num">2</span>Fraude y lavado</button>
+    <button class="nav-item" data-ir="rutas"><span class="num">3</span>Enrutamiento y comisiones</button>
+    <button class="nav-item" data-ir="liquidez"><span class="num">4</span>Distribución de liquidez</button>
+    <button class="nav-item" data-ir="evaluacion"><span class="num">5</span>Evaluación y validación</button>
+    <div class="nav-sep">Exposición</div>
+    <button class="nav-item" data-ir="animacion"><span class="num">▶</span>Algoritmos en acción</button>
+    <button class="nav-item" data-ir="sustentacion"><span class="num">?</span>Sustentación</button>
+    <button class="nav-item" data-ir="reportes"><span class="num">↓</span>Reportes</button>
+    <div class="pie">Proyecto II · Programación III<br>Datos simulados con fines académicos.<br>Algoritmos de las guías 7 a 11.</div>
+  </nav>
+
+  <div class="contenido">
+    <header class="barra">
+      <div class="titulo-pagina" id="titulo-pagina">Inicio</div>
+      <div class="acciones">
+        <button class="btn chico" id="btn-expo" title="Letra más grande para proyectar">🎤 Modo exposición</button>
+        <button class="btn chico" id="btn-pantalla" title="Pantalla completa">⛶ Pantalla completa</button>
+        <button class="btn chico" id="btn-tema" title="Cambiar tema">◐ Tema</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===================================================== INICIO -->
+      <section class="pagina activa" id="p-inicio">
+        <div class="heroe">
+          <svg class="decor" width="420" height="300" viewBox="0 0 420 300" aria-hidden="true">
+            <g stroke="#fff" stroke-width="2" fill="none">
+              <line x1="60" y1="60" x2="180" y2="120"/><line x1="180" y1="120" x2="300" y2="70"/>
+              <line x1="180" y1="120" x2="220" y2="230"/><line x1="300" y1="70" x2="380" y2="170"/>
+              <line x1="220" y1="230" x2="380" y2="170"/><line x1="60" y1="60" x2="90" y2="200"/>
+              <line x1="90" y1="200" x2="220" y2="230"/>
+            </g>
+            <g fill="#fff"><circle cx="60" cy="60" r="9"/><circle cx="180" cy="120" r="14"/>
+              <circle cx="300" cy="70" r="9"/><circle cx="220" cy="230" r="9"/><circle cx="380" cy="170" r="9"/>
+              <circle cx="90" cy="200" r="7"/></g>
+          </svg>
+          <div class="etiqueta-sup">Proyecto II · Programación III</div>
+          <h1>Sistema de Análisis y Optimización de Redes Financieras</h1>
+          <p>Modelamos la red de una caja municipal del departamento de Cusco como un conjunto de grafos para detectar operaciones sospechosas, elegir la ruta más conveniente para cada operación y distribuir el efectivo hacia bóvedas y agencias, incluso cuando un huaico corta una carretera.</p>
+          <div class="pregunta">¿Cómo puede modelarse la red operativa de una caja municipal de Cusco mediante grafos, y qué algoritmos —de los desarrollados en el curso— permiten detectar operaciones sospechosas, minimizar el costo de las operaciones y garantizar la distribución de liquidez?</div>
+        </div>
+        <div id="inicio-kpis" class="rejilla r5"><div class="cargando">Calculando indicadores…</div></div>
+        <div class="rejilla r2 mt">
+          <div class="tarjeta">
+            <h3>Guion sugerido para la exposición</h3>
+            <ol class="guion" id="guion"></ol>
+          </div>
+          <div class="tarjeta">
+            <h3>Redes modeladas</h3>
+            <div id="inicio-redes"></div>
+            <div class="aviso mt">La Caja Municipal Andina es <b>ficticia</b> y todos sus datos son <b>simulados</b> (semilla 2026). La geografía de Cusco es real. Los patrones detectados son <b>indicadores</b>, no prueba de delito.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== MÓDULO 1 -->
+      <section class="pagina" id="p-red">
+        <div class="dividido">
+          <div>
+            <div class="tarjeta">
+              <h3>Red física de la Caja Municipal Andina <span class="insignia gris">no dirigida · ponderada</span></h3>
+              <p class="tenue pequeno">Pase el cursor sobre un nodo o tramo para ver sus atributos. Haga clic para cargarlo en el formulario de edición.</p>
+              <div class="fila-campos" style="margin-bottom:10px">
+                <label class="pequeno"><input type="checkbox" id="red-criticos"> Resaltar puntos críticos</label>
+                <label class="pequeno"><input type="checkbox" id="red-nombres"> Mostrar nombres completos</label>
+              </div>
+              <div class="lienzo" id="red-mapa"></div>
+            </div>
+          </div>
+          <div>
+            <div class="tarjeta">
+              <div class="pestanas" data-grupo="red">
+                <button class="activo" data-tab="resumen">Resumen</button>
+                <button data-tab="editar">Editar</button>
+                <button data-tab="cargar">Cargar archivo</button>
+                <button data-tab="titularidad">Titularidad</button>
+              </div>
+              <div data-panel="red:resumen" id="red-resumen"></div>
+              <div data-panel="red:editar" hidden>
+                <h3>Nodo</h3>
+                <div class="fila-campos">
+                  <div class="campo"><label>Identificador</label><input id="nodo-id" placeholder="Ej. PAR"></div>
+                  <div class="campo"><label>Tipo</label>
+                    <select id="nodo-tipo"><option>agencia</option><option>cajero</option><option>agente</option><option>paso</option><option>boveda_regional</option></select></div>
+                </div>
+                <div class="campo mt"><label>Atributos (clave=valor, separados por coma)</label><input id="nodo-attrs" placeholder="lat=-13.6, lon=-71.7, demanda_alta=200"></div>
+                <div class="fila-campos mt">
+                  <button class="btn azul" data-nodo="agregar">Agregar</button>
+                  <button class="btn" data-nodo="modificar">Modificar</button>
+                  <button class="btn" data-nodo="eliminar">Eliminar</button>
+                </div>
+                <h3 class="mt">Tramo (arista)</h3>
+                <div class="fila-campos">
+                  <div class="campo"><label>Origen</label><input id="arista-u" placeholder="CUS_BC"></div>
+                  <div class="campo"><label>Destino</label><input id="arista-v" placeholder="URC"></div>
+                </div>
+                <div class="campo mt"><label>Atributos</label><input id="arista-attrs" value="tipo_via=carretera, distancia_km=20, tiempo_h=0.5, riesgo=3"></div>
+                <div class="fila-campos mt">
+                  <button class="btn azul" data-arista="agregar">Agregar</button>
+                  <button class="btn" data-arista="modificar">Modificar</button>
+                  <button class="btn" data-arista="eliminar">Eliminar</button>
+                </div>
+                <div class="fila-campos mt"><button class="btn" id="btn-restablecer">↺ Restablecer desde data/</button></div>
+                <div class="porque mt"><b class="t">Validación automática</b>La estructura rechaza nodos inexistentes, conexiones duplicadas no justificadas, lazos y valores negativos o no numéricos. Pruebe a agregar dos veces el mismo tramo.</div>
+              </div>
+              <div data-panel="red:cargar" hidden>
+                <p class="pequeno tenue">Cargue una red externa: CSV de aristas (<code>origen,destino,peso…</code>), TXT (<code>origen destino [peso]</code>) o JSON.</p>
+                <div class="fila-campos">
+                  <div class="campo"><label>Archivo</label><input type="file" id="archivo" accept=".csv,.txt,.json"></div>
+                  <label class="pequeno"><input type="checkbox" id="archivo-dirigido" checked> Dirigido</label>
+                </div>
+                <div id="archivo-resultado" class="mt"></div>
+              </div>
+              <div data-panel="red:titularidad" hidden id="red-titularidad"></div>
+            </div>
+            <div class="porque mt"><b class="t">¿Por qué lista de adyacencia?</b>Las redes financieras son dispersas: cada agencia se conecta con pocas otras. La lista de adyacencia ocupa O(V+E) frente a O(V²) de una matriz, y con diccionarios se consulta o modifica una arista en O(1). La matriz solo se construye para Floyd-Warshall.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== MÓDULO 2 -->
+      <section class="pagina" id="p-fraude">
+        <div id="fraude-kpis" class="rejilla r5"></div>
+        <div class="tarjeta mt">
+          <div class="pestanas" data-grupo="fraude" id="fraude-tabs">
+            <button class="activo" data-tab="pitufeo">Pitufeo</button>
+            <button data-tab="ciclos">Ciclos de fondos</button>
+            <button data-tab="puente">Cuentas puente</button>
+            <button data-tab="capas">Estratificación</button>
+            <button data-tab="viaje">Viaje imposible</button>
+            <button data-tab="proximidad">Proximidad (BFS)</button>
+            <button data-tab="rastreo">Rastreo (DFS)</button>
+            <button data-tab="cfc">Kosaraju vs Tarjan</button>
+          </div>
+          <div data-panel="fraude:pitufeo"></div>
+          <div data-panel="fraude:ciclos" hidden></div>
+          <div data-panel="fraude:puente" hidden></div>
+          <div data-panel="fraude:capas" hidden></div>
+          <div data-panel="fraude:viaje" hidden></div>
+          <div data-panel="fraude:proximidad" hidden>
+            <div class="fila-campos">
+              <div class="campo"><label>Cuenta marcada</label><input id="prox-cuenta" list="lista-cuentas" value="E_ORO01"></div>
+              <div class="campo"><label>Niveles: <b id="prox-niv-txt">2</b></label><input type="range" id="prox-niveles" min="1" max="3" value="2"></div>
+              <button class="btn azul" id="btn-prox">Calcular proximidad</button>
+            </div>
+            <div id="prox-resultado" class="mt"></div>
+          </div>
+          <div data-panel="fraude:rastreo" hidden>
+            <div class="fila-campos">
+              <div class="campo"><label>Cuenta de origen</label><input id="ras-cuenta" list="lista-cuentas" value="LY_ORIG"></div>
+              <div class="campo"><label>Monto mínimo por relación (S/)</label><input id="ras-minimo" type="number" value="10000"></div>
+              <button class="btn azul" id="btn-ras">Rastrear fondos</button>
+            </div>
+            <div id="ras-resultado" class="mt"></div>
+          </div>
+          <div data-panel="fraude:cfc" hidden></div>
+          <datalist id="lista-cuentas"></datalist>
+        </div>
+        <div class="aviso mt" id="fraude-aviso"></div>
+      </section>
+
+      <!-- ===================================================== MÓDULO 3 -->
+      <section class="pagina" id="p-rutas">
+        <div class="tarjeta">
+          <div class="fila-campos">
+            <div class="campo" style="flex:2"><label>Escenario de Cusco</label><select id="ruta-escenario"></select></div>
+            <div class="campo"><label>Origen</label><select id="ruta-origen"></select></div>
+            <div class="campo"><label>Destino</label><select id="ruta-destino"></select></div>
+          </div>
+          <div class="fila-campos mt">
+            <div class="campo" style="flex:2"><label>Monto: <b id="ruta-monto-txt">S/ 5,000</b></label><input type="range" id="ruta-monto" min="0" max="100" value="50"></div>
+            <div class="campo"><label>Red</label>
+              <div class="segmentado" id="ruta-variante">
+                <button class="activo" data-v="">Normal</button><button data-v="promo">Campaña cashback</button><button data-v="ruleteo">Ruleteo</button>
+              </div></div>
+          </div>
+        </div>
+        <div id="ruta-alerta" class="mt"></div>
+        <div class="rejilla r2 mt" id="ruta-mejores"></div>
+        <div class="dividido mt">
+          <div class="tarjeta">
+            <h3>Red de canales de operación <span class="insignia gris">dirigida · ponderada</span></h3>
+            <div class="lienzo" id="ruta-grafo"></div>
+          </div>
+          <div class="tarjeta">
+            <h3>¿Qué algoritmo y por qué?</h3>
+            <div id="ruta-porque"></div>
+            <div class="porque mt"><b class="t">Modelo de costo</b>Las comisiones se cobran aparte al ordenante, así que el costo es aditivo:<br><code>w = comisión fija + comisión % × monto − bonificación</code><br>Los canales no disponibles o con límite menor que el monto se excluyen antes de buscar.</div>
+          </div>
+        </div>
+        <div class="tarjeta mt">
+          <h3>Alternativas (enumeración con DFS y poda)</h3>
+          <div id="ruta-alternativas"></div>
+        </div>
+        <div class="tarjeta mt">
+          <h3>Tiempo mínimo de viaje entre ciudades
+            <span class="segmentado" id="tiempos-alg" style="margin-left:auto"><button class="activo" data-v="floyd">Floyd-Warshall</button><button data-v="johnson">Johnson</button></span></h3>
+          <div id="tiempos"></div>
+        </div>
+      </section>
+
+      <!-- ===================================================== MÓDULO 4 -->
+      <section class="pagina" id="p-liquidez">
+        <div class="tarjeta">
+          <div class="fila-campos">
+            <div class="campo"><label>Temporada</label>
+              <div class="segmentado" id="liq-temporada"><button data-v="normal">Normal</button><button class="activo" data-v="alta">Alta (Inti Raymi)</button></div></div>
+            <div class="campo"><label>Método</label>
+              <div class="segmentado" id="liq-metodo"><button class="activo" data-v="costo_minimo">Costo mínimo</button><button data-v="edmonds_karp">Edmonds-Karp</button><button data-v="ford_fulkerson">Ford-Fulkerson</button></div></div>
+            <div class="campo"><label>Lluvias: excluir rutas con riesgo mayor a</label>
+              <select id="liq-riesgo"><option value="">Sin restricción</option><option>7</option><option>6</option><option>5</option></select></div>
+          </div>
+          <div class="fila-campos mt">
+            <button class="btn primario" id="btn-huaico">⚠ Simular huaico en Abra Málaga</button>
+            <button class="btn" id="btn-reabrir">↺ Reabrir todos los tramos</button>
+            <label class="pequeno"><input type="checkbox" id="liq-troncal"> Mostrar red troncal (Kruskal)</label>
+            <label class="pequeno"><input type="checkbox" id="liq-criticos"> Mostrar puntos críticos</label>
+            <span class="pequeno tenue">Consejo: haga clic en cualquier tramo del mapa para cerrarlo o reabrirlo.</span>
+          </div>
+        </div>
+        <div id="liq-kpis" class="rejilla r4 mt"></div>
+        <div class="dividido mt">
+          <div class="tarjeta">
+            <h3>Flujo de efectivo sobre la red física</h3>
+            <div class="lienzo" id="liq-mapa"></div>
+          </div>
+          <div>
+            <div class="tarjeta"><h3>Cuellos de botella (corte mínimo)</h3><div id="liq-corte"></div></div>
+            <div class="tarjeta"><h3>Demanda no cubierta</h3><div id="liq-pendientes"></div></div>
+            <div class="tarjeta"><h3>Bóvedas regionales (división de nodos)</h3><div id="liq-almacenes"></div></div>
+          </div>
+        </div>
+        <div class="rejilla r2 mt">
+          <div class="tarjeta"><h3>Rutas con mayor flujo</h3><div id="liq-rutas" class="scroll"></div></div>
+          <div class="tarjeta"><h3>Red troncal y puntos críticos</h3><div id="liq-troncal-info"></div></div>
+        </div>
+      </section>
+
+      <!-- ===================================================== MÓDULO 5 -->
+      <section class="pagina" id="p-evaluacion">
+        <div class="tarjeta">
+          <div class="pestanas" data-grupo="eval">
+            <button class="activo" data-tab="validacion">Validación de escenarios</button>
+            <button data-tab="comparacion">Comparación de algoritmos</button>
+            <button data-tab="huaico">Huaico: antes y después</button>
+          </div>
+          <div data-panel="eval:validacion" id="eval-validacion"></div>
+          <div data-panel="eval:comparacion" hidden>
+            <div class="fila-campos">
+              <div class="campo"><label>Tamaños</label>
+                <div class="segmentado" id="cmp-modo"><button class="activo" data-v="rapido">Rápido (~3 s)</button><button data-v="completo">Completo (varios minutos)</button></div></div>
+              <button class="btn primario" id="btn-cmp">▶ Ejecutar comparación</button>
+            </div>
+            <p class="pequeno tenue mt">Redes sintéticas generadas con semilla fija. Tiempo con <code>time.perf_counter</code>, memoria pico con <code>tracemalloc</code>. Cada par de algoritmos debe dar el mismo resultado.</p>
+            <div id="cmp-resultado"></div>
+          </div>
+          <div data-panel="eval:huaico" hidden id="eval-huaico"></div>
+        </div>
+      </section>
+
+      <!-- ===================================================== ANIMACIÓN -->
+      <section class="pagina" id="p-animacion">
+        <div class="tarjeta">
+          <div class="fila-campos">
+            <div class="campo"><label>Algoritmo</label>
+              <div class="segmentado" id="ani-alg">
+                <button class="activo" data-v="bfs">BFS</button><button data-v="dijkstra">Dijkstra</button><button data-v="kruskal">Kruskal</button><button data-v="edmonds_karp">Edmonds-Karp</button><button data-v="floyd">Floyd-Warshall</button>
+              </div></div>
+            <div class="campo"><label>Red</label>
+              <div class="segmentado" id="ani-red"><button class="activo" data-v="guia">Ejemplo de la guía</button><button data-v="cusco">Red de Cusco</button></div></div>
+            <div class="campo" id="ani-origen-campo"><label>Origen</label><select id="ani-origen"></select></div>
+          </div>
+        </div>
+        <div class="dividido mt">
+          <div class="tarjeta">
+            <h3 id="ani-titulo">Algoritmo</h3>
+            <p class="tenue pequeno" id="ani-desc"></p>
+            <div class="reproductor">
+              <button class="btn chico" id="ani-inicio" title="Inicio">⏮</button>
+              <button class="btn chico" id="ani-atras" title="Paso anterior">◀</button>
+              <button class="btn primario chico" id="ani-play">▶ Reproducir</button>
+              <button class="btn chico" id="ani-adelante" title="Paso siguiente">▶|</button>
+              <button class="btn chico" id="ani-fin" title="Final">⏭</button>
+              <span class="contador" id="ani-contador">0 / 0</span>
+              <label class="pequeno tenue">Velocidad <input type="range" id="ani-vel" min="1" max="10" value="5"></label>
+            </div>
+            <div class="narracion" id="ani-narracion">Presione reproducir o avance paso a paso.</div>
+            <div class="lienzo" id="ani-lienzo"></div>
+          </div>
+          <div>
+            <div class="tarjeta"><h3>Pseudocódigo</h3><div class="pseudo" id="ani-pseudo"></div></div>
+            <div class="tarjeta"><h3>Estado</h3><div id="ani-estado"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== SUSTENTACIÓN -->
+      <section class="pagina" id="p-sustentacion">
+        <div class="tarjeta">
+          <h3>Selección y justificación de algoritmos (solo guías 7 a 11)</h3>
+          <div class="scroll" style="max-height:none">
+          <table class="tabla">
+            <thead><tr><th>Módulo</th><th>Necesidad</th><th>Alternativas</th><th>Elección</th><th>Complejidad</th><th>Criterio</th></tr></thead>
+            <tbody>
+              <tr><td>M2</td><td>Proximidad entre cuentas</td><td>BFS · DFS</td><td><b>BFS</b> (G7)</td><td>O(V+E)</td><td>Recorre por niveles: da el menor número de saltos. DFS no lo garantiza.</td></tr>
+              <tr><td>M2</td><td>Rastreo de fondos y ciclos</td><td>DFS · BFS</td><td><b>DFS</b> (G7)</td><td>O(V+E)</td><td>Sigue cada recorrido hasta el final; detecta ciclos por aristas de retroceso.</td></tr>
+              <tr><td>M2</td><td>Grupos de cuentas</td><td>Kosaraju · Tarjan</td><td><b>Tarjan</b> (G7)</td><td>O(V+E)</td><td>Una sola pasada DFS; Kosaraju necesita dos y el grafo transpuesto. Ambos se comparan.</td></tr>
+              <tr><td>M2</td><td>Estratificación</td><td>Orden topológico</td><td><b>Orden topológico</b> del grafo condensado (G7)</td><td>O(V+E)</td><td>Solo existe en grafos acíclicos; el grafo de componentes siempre lo es.</td></tr>
+              <tr><td>M2</td><td>Viaje imposible</td><td>Floyd-Warshall · Johnson</td><td><b>Floyd-Warshall</b> (G10)</td><td>O(V³)</td><td>Red física pequeña (39 nodos): se necesitan todos los pares y la matriz es simple de verificar.</td></tr>
+              <tr><td>M3</td><td>Ruta de menor comisión o tiempo</td><td>Dijkstra · Bellman-Ford</td><td><b>Dijkstra</b> (G9)</td><td>O((V+E) log V)</td><td>Comisiones y tiempos ≥ 0. Con bonificaciones negativas se cambia automáticamente a Bellman-Ford.</td></tr>
+              <tr><td>M3</td><td>Ruleteo de promociones</td><td>Bellman-Ford · Floyd-Warshall</td><td><b>Bellman-Ford</b> (G9)</td><td>O(V·E)</td><td>Detecta ciclos negativos con una relajación extra.</td></tr>
+              <tr><td>M3</td><td>Rutas alternativas</td><td>DFS · Dijkstra por canal</td><td><b>DFS con poda</b> (G7)</td><td>exponencial, acotada</td><td>Lista caminos simples; se limita a 6 saltos y se poda por costo.</td></tr>
+              <tr><td>M4</td><td>Efectivo máximo</td><td>Ford-Fulkerson (DFS) · Edmonds-Karp</td><td><b>Edmonds-Karp</b> (G11)</td><td>O(V·E²)</td><td>No depende del monto de efectivo; FF con DFS es O(E·|f*|).</td></tr>
+              <tr><td>M4</td><td>Cuellos de botella</td><td>Corte mínimo</td><td><b>Corte mínimo</b> (G11)</td><td>O(V+E)</td><td>Teorema flujo máximo = corte mínimo.</td></tr>
+              <tr><td>M4</td><td>Distribución a menor costo</td><td>Edmonds-Karp + costo · FF con Bellman-Ford</td><td><b>FF con caminos de menor costo</b> (G11 + G9)</td><td>O(F·V·E)</td><td>La red residual tiene arcos de costo negativo: Dijkstra no sirve.</td></tr>
+              <tr><td>M4</td><td>Red troncal de menor riesgo</td><td>Kruskal · Prim</td><td><b>Kruskal</b> (G8)</td><td>O(E log E)</td><td>Red vial dispersa; trabaja sobre la lista de aristas. Prim da el mismo costo.</td></tr>
+              <tr><td>M4</td><td>Puntos críticos</td><td>Eliminación + BFS</td><td><b>Eliminación + BFS</b> (G7)</td><td>O(V·(V+E))</td><td>Solo usa BFS; con 39 nodos el costo es despreciable.</td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+        <div class="rejilla r2 mt">
+          <div class="tarjeta">
+            <h3>Decisiones de modelado</h3>
+            <div class="porque"><b class="t">Comisiones</b>Se cobran aparte al ordenante: <code>w = fija + % × monto − bonificación</code>. Se descartó −log(1−p) porque solo sirve si todas las comisiones son porcentuales.</div>
+            <div class="porque mt"><b class="t">Transacciones</b>Se guardan como registro de eventos (monto, fecha y hora) y luego se agregan en el grafo de cuentas: la repetición es justamente lo que delata el pitufeo.</div>
+            <div class="porque mt"><b class="t">Bóvedas regionales</b>División de nodos <code>v::entrada → v::salida</code> con capacidad = almacenamiento, porque el flujo máximo solo limita aristas.</div>
+            <div class="porque mt"><b class="t">Fuentes y sumideros</b>Súper-fuente con la oferta de cada bóveda y súper-sumidero con la demanda de cada agencia. Cada carretera de doble sentido = dos arcos.</div>
+          </div>
+          <div class="tarjeta">
+            <h3>Preguntas frecuentes del jurado</h3>
+            <details class="faq"><summary>¿Por qué no usar Dijkstra en todos los casos?</summary><p>Dijkstra supone que una vez extraído un nodo su distancia ya no mejora; con pesos negativos (cashback) eso es falso. Por eso el sistema cambia a Bellman-Ford cuando detecta un peso negativo.</p></details>
+            <details class="faq"><summary>¿Por qué Floyd-Warshall y no Johnson en la red física?</summary><p>La red física tiene 39 nodos: O(V³) son ~60 000 operaciones y la matriz es fácil de verificar. En la comparación del módulo 5, Johnson solo gana a partir de unos 150 nodos en redes dispersas.</p></details>
+            <details class="faq"><summary>¿Qué significa un ciclo negativo en finanzas?</summary><p>Que repetir una secuencia de operaciones genera dinero: es el “ruleteo” de promociones. Las rutas mínimas dejan de estar definidas y el sistema lo reporta como alerta.</p></details>
+            <details class="faq"><summary>¿Por qué Edmonds-Karp y no Ford-Fulkerson básico?</summary><p>Ford-Fulkerson con DFS depende del valor del flujo (O(E·|f*|)) y puede elegir malos caminos. Edmonds-Karp, al usar BFS, garantiza O(V·E²). En nuestras pruebas usa entre 2 y 12 veces menos aumentos.</p></details>
+            <details class="faq"><summary>¿Para qué sirve el corte mínimo?</summary><p>Por el teorema de flujo máximo – corte mínimo, las aristas del corte son exactamente las que limitan la distribución: en temporada alta, los dos tramos de tren hacia Machupicchu Pueblo.</p></details>
+            <details class="faq"><summary>¿Detectar un patrón prueba un delito?</summary><p>No. Los patrones son indicadores para que el área de cumplimiento revise el caso. Por eso todos los reportes incluyen esa advertencia.</p></details>
+            <details class="faq"><summary>¿Cómo se sabe que los resultados son correctos?</summary><p>Los patrones se insertaron a propósito en los datos (resultado esperado conocido), las 77 pruebas automatizadas verifican los ejemplos de las guías, y cada par de algoritmos alternativos debe coincidir en las redes sintéticas.</p></details>
+            <details class="faq"><summary>¿Qué mejoras se podrían incorporar?</summary><p>Ventanas de tiempo dinámicas en el análisis de transacciones, capacidades que cambien por día, datos reales anonimizados y algoritmos más rápidos fuera del curso (por ejemplo, Hopcroft-Tarjan para puntos de articulación en O(V+E)).</p></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================== REPORTES -->
+      <section class="pagina" id="p-reportes">
+        <div class="tarjeta">
+          <h3>Reportes del sistema</h3>
+          <p class="tenue">Genera todos los reportes de texto, CSV e imágenes en la carpeta <code>reportes/</code> (los mismos que produce <code>python main.py --reportes</code>).</p>
+          <div class="fila-campos">
+            <button class="btn primario" id="btn-generar">Generar todos los reportes</button>
+            <a class="btn" href="/docs/Problematica_Caja_Municipal_Andina_v2.pdf" target="_blank">📄 Abrir la problemática (PDF)</a>
+          </div>
+          <div id="lista-reportes" class="mt"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="globo" id="globo"></div>
+<div class="aviso-flotante" id="aviso"></div>
+<script src="/static/graficos.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

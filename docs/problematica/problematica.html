@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Planteamiento de la problemática – Caja Municipal Andina</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 18mm 18mm;
+    @top-right {
+      content: "Proyecto II – Redes Financieras · Caja Municipal Andina (ficticia)";
+      font-family: "Segoe UI", Arial, sans-serif; font-size: 7.5pt; color: #8a8f98;
+    }
+    @bottom-center {
+      content: counter(page);
+      font-family: "Segoe UI", Arial, sans-serif; font-size: 8pt; color: #8a8f98;
+    }
+  }
+  @page :first {
+    @top-right { content: none; }
+  }
+  :root {
+    --accent: #9b2c2c;
+    --navy: #1f2533;
+    --blue: #2b5a8a;
+    --ink: #22252b;
+    --muted: #5f6672;
+    --line: #dcdfe4;
+    --soft: #f6f4f0;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    font-size: 9.6pt; line-height: 1.5; color: var(--ink); margin: 0;
+  }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--navy); }
+  h2 {
+    font-size: 17pt; margin: 18pt 0 8pt; padding-bottom: 4pt;
+    border-bottom: 1.6pt solid var(--accent); break-after: avoid;
+  }
+  h3 { font-size: 11.5pt; color: var(--accent); margin: 12pt 0 4pt; break-after: avoid; }
+  h4 { font-size: 9.8pt; margin: 9pt 0 3pt; break-after: avoid; }
+  p { margin: 0 0 6pt; text-align: justify; }
+  ul, ol { margin: 2pt 0 7pt; padding-left: 16pt; }
+  li { margin-bottom: 2pt; }
+  .page-break { break-before: page; }
+
+  /* Portada */
+  .cover-bar { height: 6pt; background: var(--accent); margin-bottom: 10pt; }
+  .kicker { font-size: 8.5pt; letter-spacing: 1.4pt; color: var(--muted); text-transform: uppercase; }
+  .cover-title { font-size: 27pt; margin: 70pt 0 10pt; color: var(--navy); }
+  .cover-sub { font-family: Georgia, serif; font-size: 13.5pt; color: var(--accent); line-height: 1.45; margin-bottom: 30pt; }
+  .meta { display: grid; grid-template-columns: 105pt 1fr; row-gap: 6pt; font-size: 10pt; margin-bottom: 26pt; }
+  .meta .k { color: var(--muted); font-weight: 600; }
+  .blank { border-bottom: 0.8pt solid #999; height: 15pt; width: 230pt; margin-bottom: 5pt; }
+  .toc { columns: 2; column-gap: 30pt; font-size: 9.4pt; margin: 0; padding-left: 14pt; }
+  .toc li { break-inside: avoid; }
+  .notice {
+    margin-top: 40pt; border-top: 0.8pt solid var(--line); padding-top: 8pt;
+    font-size: 8pt; color: var(--muted); text-align: justify;
+  }
+
+  /* Tablas */
+  table { width: 100%; border-collapse: collapse; margin: 5pt 0 10pt; font-size: 8.6pt; }
+  thead { display: table-header-group; }
+  th { background: var(--navy); color: #fff; text-align: left; font-weight: 600; padding: 5pt 6pt; }
+  td { padding: 4.5pt 6pt; border-bottom: 0.6pt solid var(--line); vertical-align: top; }
+  tr { break-inside: avoid; }
+  tbody tr:nth-child(even) td { background: #fafafa; }
+  .tag { display: inline-block; padding: 0 6pt; border-radius: 8pt; font-size: 7.6pt; font-weight: 600; }
+  .real { background: #e3f1e6; color: #2f6b3a; }
+  .sup  { background: #fbe9dc; color: #9a4b16; }
+  .g { font-weight: 600; color: var(--blue); white-space: nowrap; }
+  .no { color: var(--muted); }
+
+  /* Recuadros */
+  .question {
+    border: 1pt solid #d9a3a3; border-radius: 6pt; padding: 10pt 14pt; margin: 6pt 0 10pt;
+    font-family: Georgia, serif; font-size: 11pt; color: var(--navy); line-height: 1.5;
+    break-inside: avoid;
+  }
+  .refs { font-size: 8.8pt; }
+  .callout {
+    background: var(--soft); border-left: 4pt solid #c27a2c; padding: 8pt 12pt; margin: 8pt 0 10pt;
+    break-inside: avoid;
+  }
+  .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+  .callout-title { font-weight: 700; margin-bottom: 3pt; }
+  .rule {
+    background: #eef3f8; border-left: 4pt solid var(--blue); padding: 7pt 12pt; margin: 6pt 0 9pt;
+    break-inside: avoid;
+  }
+  .formula {
+    font-family: Cambria, Georgia, serif; font-size: 10.5pt; text-align: center; margin: 4pt 0 6pt;
+  }
+  .card {
+    border: 0.8pt solid var(--line); border-radius: 6pt; padding: 8pt 12pt 6pt; margin: 0 0 10pt;
+    break-inside: avoid;
+  }
+  .card h4 { color: var(--blue); font-size: 10.5pt; margin: 0 0 5pt; }
+  .card .row { display: grid; grid-template-columns: 92pt 1fr; column-gap: 10pt; margin-bottom: 4pt; }
+  .card .row > div:first-child { color: var(--muted); font-weight: 600; font-size: 8.8pt; }
+  .card ul { margin: 0; padding-left: 12pt; }
+  figure { margin: 6pt 0 8pt; break-inside: avoid; }
+  figcaption { font-size: 8pt; color: var(--muted); text-align: center; margin-top: 4pt; }
+  .small { font-size: 8.2pt; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ====================== PORTADA ====================== -->
+<div class="cover-bar"></div>
+<div class="kicker">Programación III · Proyecto II – Sistema de Análisis y Optimización de Redes Financieras</div>
+
+<h1 class="cover-title">Planteamiento de la problemática</h1>
+<div class="cover-sub">Detección de operaciones sospechosas, enrutamiento de operaciones y distribución de liquidez en la red de una caja municipal del departamento de Cusco</div>
+
+<div class="meta">
+  <div class="k">Caso de estudio</div><div>Caja Municipal Andina (entidad ficticia)</div>
+  <div class="k">Docente</div><div>Mgt. Karla Catherine Rojas Pedraza</div>
+  <div class="k">Integrantes</div>
+  <div><div class="blank"></div><div class="blank"></div><div class="blank"></div><div class="blank"></div><div class="blank"></div></div>
+  <div class="k">Fecha</div><div>Noviembre de 2026 · versión 2</div>
+</div>
+
+<ol class="toc">
+  <li>Contexto</li>
+  <li>Descripción de la problemática</li>
+  <li>Pregunta de investigación</li>
+  <li>Objetivos</li>
+  <li>Modelamiento de la red como grafo</li>
+  <li>Escenarios operativos por módulo</li>
+  <li>Algoritmos de las guías de laboratorio</li>
+  <li>Alternativas algorítmicas y elección</li>
+  <li>Datos simulados</li>
+  <li>Alcance y limitaciones</li>
+  <li>Hechos reales y supuestos del modelo</li>
+  <li>Fuentes de referencia</li>
+</ol>
+
+<div class="notice">
+  <b>Aviso:</b> la “Caja Municipal Andina” es una entidad <b>ficticia</b> creada con fines académicos. Su red de agencias, sus clientes, transacciones, montos, comisiones y capacidades son <b>datos simulados</b>. La geografía del departamento de Cusco y las instituciones mencionadas (SBS, UIF-Perú, INEI, MINCETUR) son reales y se usan solo como referencia para construir datos verosímiles. Ningún patrón de fraude descrito se atribuye a personas o entidades reales.
+</div>
+
+<!-- ====================== 1. CONTEXTO ====================== -->
+<h2 class="page-break">1. Contexto</h2>
+<h3>1.1 El departamento de Cusco como escenario financiero</h3>
+<p>El departamento de Cusco reúne características que hacen especialmente compleja la operación de una entidad financiera, y que justifican su elección como caso de estudio:</p>
+<ul>
+  <li><b>Geografía de alta montaña.</b> Las ciudades y centros poblados están conectados por pocas carreteras que atraviesan abras de gran altitud (por ejemplo, Abra Málaga, en la ruta hacia Quillabamba). La red vial tiene <b>pocos puntos de paso</b>, de modo que el cierre de un tramo puede aislar provincias enteras.</li>
+  <li><b>Estacionalidad climática.</b> En la temporada de lluvias (aproximadamente de diciembre a marzo) son frecuentes los huaicos y deslizamientos que interrumpen carreteras y reducen la capacidad de transporte.</li>
+  <li><b>Turismo concentrado.</b> Cusco ciudad, el Valle Sagrado y Machu Picchu reciben un flujo turístico muy alto, con un pico en la temporada alta (junio a agosto), que incluye la celebración del <b>Inti Raymi (24 de junio)</b>. En esos meses aumenta fuertemente la demanda de efectivo y el uso de tarjetas.</li>
+  <li><b>Acceso restringido a Machu Picchu Pueblo (Aguas Calientes).</b> No existe carretera hasta Aguas Calientes: se llega en tren desde Ollantaytambo o desde la estación Hidroeléctrica (a la que se accede por carretera vía Santa María y Santa Teresa). Todo el abastecimiento, incluido el efectivo, depende de tramos ferroviarios.</li>
+  <li><b>Economías de riesgo.</b> En el corredor de la Carretera Interoceánica (Ocongate, Marcapata, Quincemil – distrito de Camanti) existe actividad aurífera informal, y parte de la provincia de La Convención forma parte del VRAEM. Ambas situaciones están asociadas, según tipologías publicadas por las autoridades, a un mayor riesgo de lavado de activos.</li>
+  <li><b>Economía agrícola estacional.</b> La Convención es zona productora de café y cacao; durante la cosecha las cooperativas y acopiadores realizan numerosos pagos a productores en distritos alejados.</li>
+</ul>
+
+<h3>1.2 La entidad: Caja Municipal Andina (ficticia)</h3>
+<p>La <b>Caja Municipal Andina (CMA)</b> es una caja municipal de ahorro y crédito ficticia, con sede en la ciudad de Cusco, inspirada en el modelo de las cajas municipales del sur del Perú supervisadas por la SBS. Atiende principalmente a microempresarios, comerciantes, negocios turísticos, productores agrícolas y pequeños proveedores de la actividad minera.</p>
+<table>
+  <thead><tr><th style="width:30%">Aspecto</th><th>Descripción (simulada)</th></tr></thead>
+  <tbody>
+    <tr><td>Sede y bóveda central</td><td>Distrito de Wanchaq, ciudad de Cusco.</td></tr>
+    <tr><td>Bóvedas regionales</td><td>Urubamba (Valle Sagrado), Sicuani (provincias altas) y Quillabamba (La Convención).</td></tr>
+    <tr><td>Agencias</td><td>San Sebastián, San Jerónimo, Anta, Calca, Pisac, Ollantaytambo, Machupicchu Pueblo, Urcos, Ocongate, Quincemil, Yauri (Espinar), Santo Tomás, entre otras.</td></tr>
+    <tr><td>Canales de atención</td><td>Agencias, cajeros automáticos propios, agentes corresponsales en bodegas, banca móvil, transferencias interplaza e interbancarias, tarjetas de débito y crédito, y conexión con billeteras digitales.</td></tr>
+    <tr><td>Relación con el sistema financiero</td><td>Opera transferencias interbancarias a través de una cámara de compensación y liquidación, y se conecta con otros bancos, redes de cajeros, procesadores de pago y billeteras digitales.</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== 2. PROBLEMÁTICA ====================== -->
+<h2>2. Descripción de la problemática</h2>
+<p>La CMA opera en un territorio con caminos escasos, estacionalidad marcada y presencia de economías de riesgo. Esto origina <b>tres problemas operativos relacionados</b>, que corresponden a los tres escenarios exigidos por el proyecto:</p>
+
+<h3>2.1 Problema 1 – Exposición al fraude y al lavado de activos</h3>
+<p>La red de agencias y agentes corresponsales de la CMA llega a zonas como el corredor de la Interoceánica y la provincia de La Convención. A través de estos canales pueden ocurrir operaciones con características de <b>pitufeo</b> (depósitos fraccionados en montos pequeños para no llamar la atención), <b>circulación de fondos</b> entre empresas relacionadas, uso de <b>cuentas puente</b> que reciben y redistribuyen dinero en poco tiempo, <b>estratificación</b> (el dinero pasa por varias capas de cuentas antes de llegar a su destino final) y fraude con <b>tarjetas clonadas</b> en zonas turísticas. Revisar manualmente miles de transacciones no permite ver estas relaciones, porque los patrones solo aparecen al observar la <b>red completa</b> de movimientos entre cuentas, y no cada operación por separado.</p>
+
+<h3>2.2 Problema 2 – Costo y tiempo de las operaciones financieras</h3>
+<p>Los clientes de la CMA pueden mover dinero por muchos canales: transferencias interplaza, interbancarias (pasando por la cámara de compensación), billeteras digitales (con límites diarios), tarjetas de crédito y débito, cajeros propios o de otras redes, y retiro y depósito en efectivo. Cada canal tiene <b>comisiones fijas o porcentuales, tiempos de procesamiento y restricciones</b> distintas; además, algunas plataformas ofrecen <b>bonificaciones o cashback</b> promocionales. Ni la entidad ni sus clientes cuentan con una herramienta que compare de forma sistemática todas las alternativas entre un origen y un destino, por lo que muchas operaciones se realizan por la ruta habitual y no por la más conveniente.</p>
+
+<h3>2.3 Problema 3 – Distribución de liquidez en temporada alta</h3>
+<p>En la temporada alta turística, la demanda de efectivo crece mucho en Cusco ciudad, el Valle Sagrado y Machu Picchu Pueblo. El efectivo debe trasladarse desde la bóveda central hacia las bóvedas regionales, agencias y cajeros, pero cada ruta tiene una <b>capacidad máxima</b> (número de viajes de transporte blindado, límites de seguridad, tramos ferroviarios con restricciones) y un <b>costo operativo</b>, y cada bóveda regional tiene una <b>capacidad de almacenamiento</b> limitada. Si la distribución se planifica de forma intuitiva, algunos puntos quedan desabastecidos (cajeros sin efectivo) mientras otras rutas se usan por debajo de su capacidad. Además, un evento como un huaico puede cortar una ruta y obligar a redistribuir el efectivo por caminos alternativos.</p>
+
+<h3>2.4 ¿Por qué modelar la problemática con grafos?</h3>
+<p>Los tres problemas comparten una misma estructura: <b>puntos</b> (cuentas, agencias, bóvedas, cajeros, entidades) unidos por <b>conexiones</b> (transferencias, canales, rutas de transporte) que tienen atributos medibles (monto, comisión, tiempo, capacidad, riesgo). Esa estructura es, por definición, un <b>grafo</b>. Representar la red de la CMA como un grafo permite aplicar algoritmos conocidos y con complejidad demostrada —recorridos, árboles de expansión mínima, rutas más cortas y flujo máximo— para responder con rigor preguntas que hoy se responden de forma manual o intuitiva.</p>
+
+<!-- ====================== 3. PREGUNTA ====================== -->
+<h2>3. Pregunta de investigación</h2>
+<div class="question">¿Cómo puede modelarse la red operativa de una caja municipal del departamento de Cusco mediante grafos, y qué algoritmos —de los desarrollados en el curso— permiten detectar operaciones sospechosas, minimizar el costo de las operaciones financieras y garantizar la distribución de liquidez bajo las restricciones geográficas y estacionales de la región?</div>
+<h4>Preguntas específicas</h4>
+<ol>
+  <li>¿Qué nodos, aristas, pesos y atributos representan adecuadamente la red de la CMA en cada escenario?</li>
+  <li>¿Qué recorridos y estructuras del grafo de transacciones permiten identificar patrones compatibles con fraude o lavado de activos?</li>
+  <li>¿Qué algoritmo de rutas más cortas permite identificar la alternativa de menor comisión o menor tiempo entre un origen y un destino, considerando comisiones fijas, porcentuales y bonificaciones?</li>
+  <li>¿Cuánto efectivo puede distribuirse desde las bóvedas hacia las agencias en temporada alta, a qué costo, y qué rutas limitan esa distribución?</li>
+  <li>¿Cómo se comportan los algoritmos seleccionados, en tiempo y memoria, frente a redes de distinto tamaño, y cómo se comparan con sus alternativas?</li>
+</ol>
+
+<!-- ====================== 4. OBJETIVOS ====================== -->
+<h2>4. Objetivos</h2>
+<h4>Objetivo general</h4>
+<p>Desarrollar un sistema algorítmico en Python que modele mediante grafos la red operativa de la Caja Municipal Andina en el departamento de Cusco, y que seleccione y justifique técnicamente —entre los algoritmos de recorridos, árboles de expansión mínima, rutas más cortas y flujo máximo desarrollados en el curso— los más adecuados para (1) la prevención de fraudes y lavado de activos, (2) la optimización del enrutamiento de operaciones y del cálculo de comisiones, y (3) la distribución de liquidez hacia bóvedas y agencias.</p>
+<h4>Objetivos específicos</h4>
+<ol>
+  <li>Modelar la red de la CMA identificando nodos, aristas, pesos y atributos para cada escenario operativo.</li>
+  <li>Analizar y seleccionar, entre los algoritmos de las guías de laboratorio 7 a 11, los más adecuados para cada escenario, evaluando su fundamento teórico y su complejidad computacional.</li>
+  <li>Implementar en Python los algoritmos seleccionados para detectar relaciones sospechosas, comparar rutas y comisiones, y planificar la distribución de efectivo.</li>
+  <li>Evaluar el desempeño de las soluciones con datos simulados de distintos tamaños, midiendo tiempos de ejecución y uso de memoria.</li>
+  <li>Validar los resultados comparándolos con resultados esperados conocidos y con algoritmos alternativos.</li>
+</ol>
+
+<!-- ====================== 5. MODELAMIENTO ====================== -->
+<h2>5. Modelamiento de la red como grafo</h2>
+<p>El sistema usa una <b>representación común</b> (lista de adyacencia con atributos en cada arista), compartida por todos los módulos. Se elige la lista de adyacencia porque las redes financieras son <b>dispersas</b> (cada nodo se conecta con pocos otros), lo que permite almacenar el grafo en espacio O(V + E) en lugar del O(V²) de una matriz de adyacencia. La matriz solo se construye cuando un algoritmo la necesita (Floyd-Warshall).</p>
+
+<h3>5.1 Nodos</h3>
+<table>
+  <thead><tr><th style="width:20%">Tipo de nodo</th><th style="width:38%">Ejemplos en Cusco</th><th>Atributos principales</th></tr></thead>
+  <tbody>
+    <tr><td>Bóveda central</td><td>Wanchaq (Cusco)</td><td>Efectivo disponible (oferta)</td></tr>
+    <tr><td>Bóveda regional</td><td>Urubamba, Sicuani, Quillabamba</td><td>Oferta propia, <b>capacidad de almacenamiento</b></td></tr>
+    <tr><td>Agencia</td><td>Calca, Anta, Ollantaytambo, Urcos, Ocongate, Quincemil, Yauri…</td><td>Demanda de efectivo (normal y en temporada alta)</td></tr>
+    <tr><td>Cajero automático</td><td>Plaza de Armas, Av. El Sol, aeropuerto, Machupicchu Pueblo…</td><td>Demanda, red a la que pertenece</td></tr>
+    <tr><td>Agente corresponsal</td><td>Bodegas en distritos rurales</td><td>Límite de operación diario</td></tr>
+    <tr><td>Nodo de paso</td><td>Santa María, Hidroeléctrica</td><td>Solo conecta rutas</td></tr>
+    <tr><td>Entidad externa</td><td>Otros bancos, cámara de compensación, procesador de tarjetas, billetera digital</td><td>Tipo de entidad, comisiones</td></tr>
+    <tr><td>Cuenta / cliente</td><td>Cuentas de personas y empresas (simuladas)</td><td>Tipo de cliente, agencia de origen, nivel de riesgo</td></tr>
+  </tbody>
+</table>
+
+<h3>5.2 Aristas y tipos de grafo</h3>
+<p>El proyecto exige trabajar con redes dirigidas y no dirigidas, ponderadas y no ponderadas. En la CMA cada tipo aparece de forma natural:</p>
+<table>
+  <thead><tr><th style="width:21%">Arista</th><th style="width:19%">Tipo de grafo</th><th>Atributos / pesos</th><th style="width:9%">Módulo</th></tr></thead>
+  <tbody>
+    <tr><td>Transferencia entre cuentas</td><td>Dirigido, ponderado</td><td>Monto, fecha y hora, canal</td><td>M2</td></tr>
+    <tr><td>Titularidad cliente – cuenta</td><td>No dirigido, no ponderado</td><td>Solo indica relación (grafo bipartito clientes / cuentas)</td><td>M1, M2</td></tr>
+    <tr><td>Canal de operación</td><td>Dirigido, ponderado</td><td>Comisión fija, comisión %, bonificación, tiempo, límite, disponibilidad</td><td>M3</td></tr>
+    <tr><td>Carretera o vía férrea</td><td>No dirigido, ponderado</td><td>Distancia, tiempo, riesgo</td><td>M3, M4</td></tr>
+    <tr><td>Ruta de traslado de efectivo</td><td>Dirigido, ponderado</td><td>Capacidad máxima, costo por unidad, tiempo, riesgo</td><td>M4</td></tr>
+  </tbody>
+</table>
+
+<h3>5.3 Red física de la CMA</h3>
+<figure>
+<svg viewBox="0 0 760 470" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="470" rx="8" fill="#f8f7f4"/>
+  <!-- carreteras -->
+  <g stroke="#9aa0a8" stroke-width="2.4" fill="none">
+    <line x1="290" y1="45" x2="215" y2="100"/>   <!-- Quillabamba - Santa María -->
+    <line x1="215" y1="100" x2="135" y2="160"/>  <!-- Santa María - Hidroeléctrica -->
+    <line x1="295" y1="195" x2="365" y2="185"/>  <!-- Ollantaytambo - Urubamba -->
+    <line x1="365" y1="185" x2="455" y2="170"/>  <!-- Urubamba - Calca -->
+    <line x1="365" y1="185" x2="430" y2="280"/>  <!-- Urubamba - Cusco -->
+    <line x1="455" y1="170" x2="430" y2="280"/>  <!-- Calca - Cusco -->
+    <line x1="430" y1="280" x2="335" y2="272"/>  <!-- Cusco - Anta -->
+    <line x1="430" y1="280" x2="520" y2="345"/>  <!-- Cusco - Urcos -->
+    <line x1="520" y1="345" x2="615" y2="300"/>  <!-- Urcos - Ocongate -->
+    <line x1="615" y1="300" x2="705" y2="230"/>  <!-- Ocongate - Quincemil -->
+    <line x1="520" y1="345" x2="570" y2="420"/>  <!-- Urcos - Sicuani -->
+    <line x1="570" y1="420" x2="460" y2="448"/>  <!-- Sicuani - Yauri -->
+  </g>
+  <!-- Abra Málaga -->
+  <line x1="215" y1="100" x2="295" y2="195" stroke="#b03a3a" stroke-width="2.4"/>
+  <circle cx="250" cy="142" r="9" fill="#fff" stroke="#b03a3a" stroke-width="1.6"/>
+  <text x="250" y="146.5" text-anchor="middle" font-size="12" font-weight="700" fill="#b03a3a">!</text>
+  <text x="264" y="132" font-size="10.5" fill="#b03a3a">Abra Málaga</text>
+  <text x="264" y="145" font-size="9" fill="#b03a3a">(riesgo de huaico)</text>
+  <!-- tren -->
+  <g stroke="#d07a2a" stroke-width="2.6" stroke-dasharray="7 5" fill="none">
+    <line x1="135" y1="160" x2="200" y2="225"/>  <!-- Hidroeléctrica - MP -->
+    <line x1="200" y1="225" x2="295" y2="195"/>  <!-- MP - Ollantaytambo -->
+  </g>
+  <!-- electrónico -->
+  <line x1="430" y1="280" x2="612" y2="372" stroke="#3a6ea5" stroke-width="1.6" stroke-dasharray="2 4"/>
+  <rect x="600" y="366" width="152" height="46" rx="7" fill="#eef3f8" stroke="#3a6ea5" stroke-dasharray="4 3"/>
+  <text x="676" y="385" text-anchor="middle" font-size="10" font-weight="600" fill="#2b5a8a">Entidades externas</text>
+  <text x="676" y="400" text-anchor="middle" font-size="8.5" fill="#2b5a8a">bancos · compensación · billeteras</text>
+
+  <!-- nodos de paso -->
+  <circle cx="215" cy="100" r="6.5" fill="#a3a8b0"/>
+  <text x="168" y="88" font-size="9.5" fill="#6b7280">Santa María</text>
+  <circle cx="135" cy="160" r="6.5" fill="#a3a8b0"/>
+  <text x="60" y="152" font-size="9.5" fill="#6b7280">Hidroeléctrica</text>
+  <!-- bóvedas regionales -->
+  <circle cx="290" cy="45" r="11" fill="#c97a2c"/>
+  <text x="306" y="49" font-size="10.5" font-weight="700">Quillabamba</text>
+  <circle cx="365" cy="185" r="11" fill="#c97a2c"/>
+  <text x="345" y="166" font-size="10.5" font-weight="700">Urubamba</text>
+  <circle cx="570" cy="420" r="11" fill="#c97a2c"/>
+  <text x="587" y="436" font-size="10.5" font-weight="700">Sicuani</text>
+  <!-- bóveda central -->
+  <circle cx="430" cy="280" r="15" fill="#8e2a2a"/>
+  <text x="452" y="264" font-size="11" font-weight="700">Cusco</text>
+  <text x="452" y="277" font-size="8.5" fill="#6b7280">Bóveda central (Wanchaq)</text>
+  <!-- nodos puente -->
+  <rect x="285" y="185" width="20" height="20" rx="3" fill="#6a4c9c"/>
+  <text x="250" y="222" font-size="10.5" font-weight="700">Ollantaytambo</text>
+  <rect x="510" y="335" width="20" height="20" rx="3" fill="#6a4c9c"/>
+  <text x="497" y="372" font-size="10.5" font-weight="700">Urcos</text>
+  <!-- agencias -->
+  <g fill="#2f5d8a">
+    <circle cx="200" cy="225" r="8.5"/><circle cx="455" cy="170" r="8.5"/><circle cx="335" cy="272" r="8.5"/>
+    <circle cx="615" cy="300" r="8.5"/><circle cx="705" cy="230" r="8.5"/><circle cx="460" cy="448" r="8.5"/>
+  </g>
+  <text x="125" y="246" font-size="10.5" font-weight="700">Machupicchu Pueblo</text>
+  <text x="125" y="259" font-size="8.5" fill="#6b7280">(Aguas Calientes · sin carretera)</text>
+  <text x="468" y="160" font-size="10">Calca / Pisac</text>
+  <text x="300" y="292" font-size="10">Anta</text>
+  <text x="600" y="322" font-size="10">Ocongate</text>
+  <text x="665" y="214" font-size="10">Quincemil</text>
+  <text x="718" y="252" font-size="8.5" fill="#6b7280">(Camanti)</text>
+  <text x="652" y="290" font-size="8.5" fill="#9aa0a8" transform="rotate(-38 652 290)">Interoceánica</text>
+  <text x="448" y="452" font-size="10" text-anchor="end">Yauri (Espinar)</text>
+
+  <!-- leyenda -->
+  <g transform="translate(18,318)">
+    <rect width="170" height="146" rx="6" fill="#fff" stroke="#dcdfe4"/>
+    <text x="10" y="16" font-size="9.5" font-weight="700">Leyenda</text>
+    <circle cx="18" cy="31" r="7" fill="#8e2a2a"/><text x="32" y="34.5" font-size="9">Bóveda central</text>
+    <circle cx="18" cy="49" r="6.5" fill="#c97a2c"/><text x="32" y="52.5" font-size="9">Bóveda regional</text>
+    <circle cx="18" cy="67" r="5.5" fill="#2f5d8a"/><text x="32" y="70.5" font-size="9">Agencia / cajeros</text>
+    <rect x="12" y="79" width="12" height="12" rx="2" fill="#6a4c9c"/><text x="32" y="88.5" font-size="9">Nodo puente</text>
+    <circle cx="18" cy="103" r="4.5" fill="#a3a8b0"/><text x="32" y="106.5" font-size="9">Nodo de paso</text>
+    <line x1="10" y1="121" x2="30" y2="121" stroke="#9aa0a8" stroke-width="2.4"/><text x="34" y="124.5" font-size="9">Carretera</text>
+    <line x1="88" y1="121" x2="108" y2="121" stroke="#d07a2a" stroke-width="2.6" stroke-dasharray="6 4"/><text x="112" y="124.5" font-size="9">Tren</text>
+    <line x1="10" y1="137" x2="30" y2="137" stroke="#3a6ea5" stroke-width="1.6" stroke-dasharray="2 3"/><text x="34" y="140.5" font-size="9">Electrónico</text>
+  </g>
+</svg>
+<figcaption>Figura 1. Red física simplificada de la CMA (esquema, no a escala). Las conexiones reales son más numerosas; el esquema muestra la estructura principal que se usará en el modelo.</figcaption>
+</figure>
+
+<div class="callout">
+  <div class="callout-title">Observaciones clave del modelo</div>
+  <ul>
+    <li><b>Machupicchu Pueblo</b> tiene dos accesos y ambos terminan en tren: desde Ollantaytambo y desde la Hidroeléctrica. Los tramos ferroviarios son candidatos naturales a <b>cuello de botella</b> en la distribución de efectivo.</li>
+    <li><b>Puntos críticos.</b> En el esquema simplificado, la eliminación de cualquiera de estos siete nodos desconecta parte de la red: <b>Cusco</b> (aísla Anta), <b>Urubamba</b> y <b>Ollantaytambo</b> (aíslan Machupicchu Pueblo y La Convención), <b>Santa María</b> (aísla Quillabamba), <b>Urcos</b> (aísla las provincias altas y la Interoceánica), <b>Ocongate</b> (aísla Quincemil) y <b>Sicuani</b> (aísla Yauri). La hipótesis inicial solo consideraba Ollantaytambo y Urcos; el sistema deberá confirmar la lista completa con los datos finales.</li>
+    <li><b>Contingencia de Abra Málaga.</b> Si un huaico cierra este tramo, Quillabamba <b>no queda aislada</b>: el efectivo puede llegar por Ollantaytambo → tren → Machupicchu Pueblo → tren → Hidroeléctrica → Santa María → Quillabamba. Esa ruta alternativa comparte los tramos ferroviarios con la demanda de Machupicchu Pueblo, lo que en temporada alta genera un cuello de botella que el corte mínimo debe evidenciar.</li>
+  </ul>
+</div>
+
+<h3>5.4 Decisiones de modelado</h3>
+<div class="rule">
+  <h4 style="margin-top:0">a) Cálculo de comisiones (módulo 3)</h4>
+  <p>Regla de negocio adoptada: <b>las comisiones se cobran aparte al ordenante</b> y el monto transferido llega íntegro a cada tramo. Con esta regla, el costo de usar un canal para enviar un monto <i>M</i> es aditivo y puede usarse directamente como peso de la arista:</p>
+  <div class="formula">w(u, v) = comisión_fija(u, v) + comisión_%(u, v) × M − bonificación(u, v)</div>
+  <p>Como <i>M</i> lo indica el usuario en cada consulta, los pesos se calculan antes de ejecutar el algoritmo. Se descarta la transformación −log(1 − p), porque solo es válida cuando <b>todas</b> las comisiones son porcentuales y se descuentan del monto; con comisiones fijas y porcentuales mezcladas el costo deja de ser una suma de pesos. Si existen bonificaciones o cashback mayores que la comisión, el peso resulta <b>negativo</b>, lo que obliga a usar Bellman-Ford en lugar de Dijkstra (ver módulo 3).</p>
+</div>
+<div class="rule">
+  <h4 style="margin-top:0">b) Transacciones como registro de eventos (módulo 2)</h4>
+  <p>Dos transferencias entre las mismas cuentas en momentos distintos son operaciones distintas, y su repetición es justamente lo que delata el pitufeo. Por eso las transacciones se guardan como un <b>registro de eventos</b> (origen, destino, monto, fecha y hora, canal) y el grafo de cuentas se construye a partir de él agregando monto total y número de operaciones por par de cuentas. Las validaciones de “conexiones duplicadas” del módulo 1 se aplican solo a las redes de canales y de rutas físicas.</p>
+</div>
+<div class="rule">
+  <h4 style="margin-top:0">c) Capacidad de las bóvedas regionales (módulo 4)</h4>
+  <p>El flujo máximo limita aristas, no nodos. Para respetar la capacidad de almacenamiento de una bóveda regional se aplica <b>división de nodos</b>: la bóveda <i>v</i> se reemplaza por <i>v</i>_entrada → <i>v</i>_salida, con una arista cuya capacidad es el almacenamiento máximo. Todas las rutas que llegan a <i>v</i> entran por <i>v</i>_entrada y todas las que salen parten de <i>v</i>_salida.</p>
+</div>
+<div class="rule">
+  <h4 style="margin-top:0">d) Fuentes, sumideros y vías no dirigidas (módulo 4)</h4>
+  <ul>
+    <li>Se agrega una <b>súper-fuente</b> conectada a cada bóveda con capacidad igual a su efectivo disponible, y un <b>súper-sumidero</b> al que llega cada agencia con capacidad igual a su demanda. Así, varias bóvedas y varias agencias se resuelven con un único problema de flujo.</li>
+    <li>Cada carretera no dirigida se representa como <b>dos arcos dirigidos</b> con la misma capacidad, uno en cada sentido.</li>
+    <li>El <b>riesgo</b> de una ruta se usa de dos formas: como filtro (en temporada de lluvias se excluyen las rutas con riesgo superior a un umbral) y como peso del árbol de expansión mínima de la red troncal.</li>
+  </ul>
+</div>
+
+<!-- ====================== 6. ESCENARIOS ====================== -->
+<h2>6. Escenarios operativos por módulo</h2>
+<p>El sistema se organiza en cinco módulos que comparten la misma representación del grafo. Los módulos 2, 3 y 4 corresponden a los tres escenarios operativos del proyecto; el módulo 1 es la base y el módulo 5 evalúa a los demás. <b>Todos los algoritmos provienen de las guías de laboratorio 7 a 11</b> (la columna “G” indica la guía).</p>
+
+<div class="card">
+  <h4>Módulo 1 · Gestión y modelamiento de la red</h4>
+  <div class="row"><div>Problema</div><div>Contar con una representación única, consistente y validada de la red de la CMA.</div></div>
+  <div class="row"><div>En Cusco</div><div>Registrar bóvedas, agencias, cajeros, agentes, cuentas y entidades externas; rutas físicas, canales y transferencias.</div></div>
+  <div class="row"><div>Funciones</div><div>Crear, modificar y eliminar nodos y aristas; cargar archivos CSV, TXT y JSON; validar datos (nodos inexistentes, duplicados no justificados, valores inválidos o negativos donde no corresponden); visualizar la red sobre un mapa esquemático de Cusco.</div></div>
+  <div class="row"><div>Algoritmos</div><div>BFS para verificar conectividad tras cada modificación (G7); comprobación de <b>bipartición</b> del grafo cliente–cuenta como validación de consistencia: un cliente nunca debe estar enlazado con otro cliente ni una cuenta con otra cuenta (G7).</div></div>
+  <div class="row"><div>Resultado</div><div>Estructura de grafo común reutilizada por los módulos 2 a 5.</div></div>
+</div>
+
+<div class="card">
+  <h4>Módulo 2 · Análisis de transacciones y detección de operaciones sospechosas</h4>
+  <div class="row"><div>Problema</div><div>Identificar, dentro de miles de transacciones, relaciones y recorridos de fondos compatibles con fraude o lavado de activos.</div></div>
+  <div class="row"><div>En Cusco</div><div>Depósitos fraccionados en agentes del corredor Ocongate – Quincemil; circulación de fondos entre comercializadoras relacionadas; cuentas puente; retiros con una misma tarjeta en Cusco y Machupicchu Pueblo en un intervalo menor al tiempo mínimo de viaje.</div></div>
+  <div class="row"><div>Patrón → algoritmo</div><div><ul>
+    <li><b>Proximidad</b> a cuentas marcadas (en cuántos saltos) → BFS por niveles (G7).</li>
+    <li><b>Rastreo</b> de fondos e intermediarios → DFS con reconstrucción de recorridos (G7).</li>
+    <li><b>Grupos de cuentas</b> donde el dinero circula → componentes fuertemente conexas con Kosaraju y Tarjan (G7).</li>
+    <li><b>Ciclos de fondos</b> → DFS dentro de cada componente fuertemente conexa (G7).</li>
+    <li><b>Estratificación</b> (capas de cuentas) → orden topológico del grafo condensado de componentes (G7).</li>
+    <li><b>Pitufeo y cuentas puente</b> → grado de entrada y salida con ventanas de tiempo sobre el registro de eventos.</li>
+    <li><b>Viaje imposible</b> de tarjetas → tiempo mínimo entre ciudades calculado por el módulo 3 con Floyd-Warshall (G10).</li>
+  </ul></div></div>
+  <div class="row"><div>Resultado</div><div>Reporte de cuentas y secuencias de transacciones que requieren revisión. Los patrones son <b>indicadores</b>, no prueba de delito.</div></div>
+</div>
+
+<div class="card">
+  <h4>Módulo 3 · Optimización del enrutamiento de operaciones y cálculo de comisiones</h4>
+  <div class="row"><div>Problema</div><div>Determinar y comparar las alternativas para realizar una operación entre un origen y un destino, minimizando comisión o tiempo.</div></div>
+  <div class="row"><div>En Cusco</div><div>Un comerciante de café en Quillabamba paga a un proveedor en Lima; un turista paga con tarjeta de crédito extranjera en un restaurante de Machupicchu Pueblo; un cliente retira con tarjeta de débito en un cajero de otra red frente a uno propio más lejano.</div></div>
+  <div class="row"><div>Operaciones</div><div>Interplaza, interbancarias, billeteras digitales, tarjetas de crédito y débito, cajeros (ATM), compensación y liquidación.</div></div>
+  <div class="row"><div>Algoritmos</div><div><ul>
+    <li><b>Dijkstra</b> con cola de prioridad (heapq) para la ruta de menor costo o menor tiempo, sobre la red filtrada por restricciones (canales no disponibles o con límite menor al monto se excluyen) (G9).</li>
+    <li><b>Bellman-Ford</b> cuando hay bonificaciones que producen pesos negativos; además detecta <b>ciclos negativos</b> (“ruleteo” de promociones), que se reportan al módulo 2 como alerta (G9, G10).</li>
+    <li><b>Enumeración de rutas alternativas con DFS</b>, con poda por número máximo de saltos y por costo, para listar y comparar las mejores opciones (G7).</li>
+    <li><b>Floyd-Warshall</b> para la matriz de costos y tiempos entre todas las ciudades de la red física (pequeña) y <b>Johnson</b> como alternativa para redes dispersas grandes (G9, G10).</li>
+  </ul></div></div>
+  <div class="row"><div>Resultado</div><div>Reporte comparativo de rutas con comisión total, tiempo total y canal utilizado.</div></div>
+</div>
+
+<div class="card">
+  <h4>Módulo 4 · Planificación y optimización de la distribución de liquidez</h4>
+  <div class="row"><div>Problema</div><div>Determinar cuánto efectivo puede llevarse desde las bóvedas hacia agencias y cajeros, respetando capacidades de rutas y bóvedas, al menor costo operativo.</div></div>
+  <div class="row"><div>En Cusco</div><div>Semana del Inti Raymi: alta demanda en Cusco ciudad, Valle Sagrado y Machupicchu Pueblo; tramos ferroviarios con capacidad limitada; rutas de montaña con número limitado de traslados; temporada de lluvias con riesgo de huaico.</div></div>
+  <div class="row"><div>Algoritmos</div><div><ul>
+    <li><b>Edmonds-Karp</b> (Ford-Fulkerson con BFS) sobre la red con súper-fuente, súper-sumidero y división de nodos, para obtener el efectivo máximo distribuible (G11).</li>
+    <li><b>Corte mínimo</b> (BFS sobre la red residual final) para identificar las rutas que limitan la distribución (G11).</li>
+    <li><b>Ford-Fulkerson con caminos aumentantes de menor costo</b>: en lugar de BFS, cada camino aumentante se elige con Bellman-Ford sobre la red residual, que contiene aristas inversas de costo negativo. Combina el método de la G11 con el algoritmo de la G9 y entrega la distribución máxima con el menor costo de traslado.</li>
+    <li><b>Kruskal y Prim</b> sobre la red vial con peso = riesgo, para obtener la <b>red troncal de menor riesgo</b> que mantiene conectados todos los puntos en temporada de lluvias (G8).</li>
+    <li><b>Puntos críticos</b>: eliminación de cada nodo y verificación de conectividad con BFS (G7).</li>
+  </ul></div></div>
+  <div class="row"><div>Resultado</div><div>Efectivo distribuido por ruta, capacidad utilizada, rutas saturadas, demanda no cubierta por agencia, costo total del plan y red troncal recomendada.</div></div>
+</div>
+
+<div class="card">
+  <h4>Módulo 5 · Evaluación, comparación y validación</h4>
+  <div class="row"><div>Problema</div><div>Demostrar que las soluciones funcionan, son eficientes y cumplen las restricciones de cada escenario.</div></div>
+  <div class="row"><div>En Cusco</div><div>Escenario de contingencia: <b>un huaico cierra Abra Málaga</b>. Se recalculan rutas, puntos críticos y flujo máximo, y se compara la situación antes y después.</div></div>
+  <div class="row"><div>Actividades</div><div><ul>
+    <li>Pruebas con resultados esperados conocidos (patrones insertados en los datos).</li>
+    <li>Comparación de alternativas de las guías: Dijkstra vs. Bellman-Ford; Floyd-Warshall vs. Johnson; Kosaraju vs. Tarjan; Prim vs. Kruskal; Ford-Fulkerson con DFS vs. Edmonds-Karp.</li>
+    <li>Medición de tiempo (<code>time.perf_counter</code>) y memoria (<code>tracemalloc</code>) en redes sintéticas de 100 a 2 000 nodos generadas con semilla fija.</li>
+    <li>Verificación automática de restricciones: ningún flujo supera su capacidad, se conserva el flujo en nodos intermedios y el costo de cada ruta coincide con la suma de sus aristas.</li>
+  </ul></div></div>
+  <div class="row"><div>Resultado</div><div>Reportes y gráficas que contrastan complejidad teórica y desempeño empírico, y justifican la elección algorítmica.</div></div>
+</div>
+
+<!-- ====================== 7. ALGORITMOS DE LAS GUÍAS ====================== -->
+<h2>7. Algoritmos de las guías de laboratorio</h2>
+<p>Por decisión del grupo, el proyecto utiliza <b>exclusivamente</b> los algoritmos desarrollados en las guías de laboratorio 7 a 11. Cuando una necesidad del proyecto sugeriría un algoritmo especializado fuera del curso, se resuelve combinando algoritmos de las guías y se documenta esa decisión.</p>
+<table>
+  <thead><tr><th style="width:9%">Guía</th><th style="width:25%">Algoritmo</th><th>Uso en el proyecto</th><th style="width:11%">Módulo</th></tr></thead>
+  <tbody>
+    <tr><td class="g">G7</td><td>BFS</td><td>Proximidad entre cuentas; conectividad; puntos críticos; corte mínimo; caminos aumentantes de Edmonds-Karp</td><td>M1, M2, M4</td></tr>
+    <tr><td class="g">G7</td><td>DFS</td><td>Rastreo de fondos; ciclos; enumeración de rutas alternativas</td><td>M2, M3</td></tr>
+    <tr><td class="g">G7</td><td>Orden topológico</td><td>Capas de estratificación en el grafo condensado de componentes</td><td>M2</td></tr>
+    <tr><td class="g">G7</td><td>Kosaraju · Tarjan</td><td>Componentes fuertemente conexas (grupos de cuentas); se comparan entre sí</td><td>M2, M5</td></tr>
+    <tr><td class="g">G7</td><td>Bipartición</td><td>Validación del grafo cliente–cuenta</td><td>M1</td></tr>
+    <tr><td class="g">G8</td><td>Kruskal (Union-Find) · Prim</td><td>Red troncal de menor riesgo; se comparan entre sí</td><td>M4, M5</td></tr>
+    <tr><td class="g">G9</td><td>Dijkstra</td><td>Ruta de menor comisión o tiempo</td><td>M3</td></tr>
+    <tr><td class="g">G9</td><td>Bellman-Ford</td><td>Rutas con bonificaciones; detección de ruleteo; caminos aumentantes de menor costo</td><td>M3, M4</td></tr>
+    <tr><td class="g">G9</td><td>Johnson</td><td>Todos los pares en redes dispersas grandes; comparación con Floyd-Warshall</td><td>M3, M5</td></tr>
+    <tr><td class="g">G10</td><td>Floyd-Warshall</td><td>Matriz de costos y tiempos entre ciudades; insumo del “viaje imposible”</td><td>M2, M3</td></tr>
+    <tr><td class="g">G11</td><td>Ford-Fulkerson · Edmonds-Karp</td><td>Flujo máximo de efectivo; se comparan entre sí</td><td>M4, M5</td></tr>
+    <tr><td class="g">G11</td><td>Corte mínimo</td><td>Cuellos de botella de la distribución</td><td>M4</td></tr>
+    <tr><td class="g no">G7</td><td class="no">Heavy-Light Decomposition · Euler Tour · recorrido euleriano</td><td class="no">No se utilizan: resuelven consultas sobre árboles o recorridos que usan cada arista una vez, que no corresponden a ninguna necesidad del caso.</td><td class="no">—</td></tr>
+    <tr><td class="g no">G11</td><td class="no">Emparejamiento bipartito</td><td class="no">No se utiliza: no hay un problema de asignación uno a uno en los escenarios planteados.</td><td class="no">—</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== 8. ALTERNATIVAS ====================== -->
+<h2>8. Alternativas algorítmicas y elección</h2>
+<p>La tabla resume, para cada necesidad, las alternativas de las guías que se evaluarán y la elección preliminar con su criterio. V es el número de nodos y E el número de aristas. La elección se confirmará con las pruebas del módulo 5.</p>
+<table>
+  <thead><tr><th style="width:17%">Necesidad</th><th style="width:20%">Alternativas</th><th style="width:20%">Elección preliminar</th><th>Criterio</th></tr></thead>
+  <tbody>
+    <tr><td>Proximidad entre cuentas</td><td>BFS · DFS</td><td>BFS – O(V + E)</td><td>Recorre por niveles: da directamente la distancia en saltos desde una cuenta marcada. DFS no garantiza el menor número de saltos.</td></tr>
+    <tr><td>Rastreo de fondos y ciclos</td><td>DFS · BFS</td><td>DFS – O(V + E)</td><td>Sigue cada recorrido hasta el final y detecta ciclos con las aristas de retroceso. Se ejecuta dentro de cada componente fuerte para acotar la búsqueda.</td></tr>
+    <tr><td>Grupos de cuentas relacionadas</td><td>Kosaraju · Tarjan</td><td>Tarjan – O(V + E)</td><td>Una sola pasada DFS frente a las dos de Kosaraju (que además construye el grafo transpuesto). Ambos se implementan y comparan.</td></tr>
+    <tr><td>Capas de estratificación</td><td>Orden topológico (DFS)</td><td>Orden topológico – O(V + E)</td><td>Solo es aplicable a grafos acíclicos; por eso se aplica al grafo condensado de componentes, que siempre es un DAG.</td></tr>
+    <tr><td>Ruta de menor comisión o tiempo</td><td>Dijkstra · Bellman-Ford</td><td>Dijkstra – O((V + E) log V)</td><td>Las comisiones y tiempos son no negativos. Si hay bonificaciones con peso negativo se cambia a Bellman-Ford – O(V·E), que además detecta ciclos negativos.</td></tr>
+    <tr><td>Varias alternativas de ruta</td><td>Enumeración DFS · Dijkstra por canal</td><td>Enumeración DFS con poda</td><td>Lista caminos simples ordenados por costo. Es exponencial en el peor caso, por lo que se limita el número de saltos (4 a 5) y se poda por costo; la red de canales es pequeña.</td></tr>
+    <tr><td>Costos entre todas las ciudades</td><td>Floyd-Warshall · Johnson · Dijkstra desde cada nodo</td><td>Floyd-Warshall – O(V³)</td><td>La red física tiene unos 40 nodos: la matriz es pequeña y el algoritmo es sencillo de verificar. Johnson – O(V·E log V) se evalúa en redes sintéticas grandes y dispersas.</td></tr>
+    <tr><td>Efectivo máximo distribuible</td><td>Ford-Fulkerson (DFS) · Edmonds-Karp</td><td>Edmonds-Karp – O(V·E²)</td><td>La complejidad no depende del monto de efectivo, a diferencia de Ford-Fulkerson con DFS – O(E·|f*|), cuyo número de iteraciones crece con las capacidades.</td></tr>
+    <tr><td>Cuellos de botella</td><td>Corte mínimo</td><td>Corte mínimo – O(V + E)</td><td>Por el teorema de flujo máximo – corte mínimo, las aristas del corte son las que limitan la distribución.</td></tr>
+    <tr><td>Distribución a menor costo</td><td>Edmonds-Karp + costo calculado · Ford-Fulkerson con Bellman-Ford</td><td>Ford-Fulkerson con Bellman-Ford – O(F·V·E)</td><td>Edmonds-Karp maximiza la cantidad pero ignora el costo. Elegir cada camino aumentante con Bellman-Ford minimiza el costo; Dijkstra no sirve aquí porque la red residual tiene aristas de costo negativo. F es el número de aumentos.</td></tr>
+    <tr><td>Red troncal de menor riesgo</td><td>Kruskal · Prim</td><td>Kruskal – O(E log E)</td><td>La red vial es dispersa y Kruskal trabaja directamente sobre la lista de aristas. Prim – O(E log V) se compara. El MST no resuelve el enrutamiento origen–destino ni el flujo con capacidades: se usa solo para el diseño de la red troncal.</td></tr>
+    <tr><td>Nodos críticos de la red</td><td>Eliminación de nodos + BFS</td><td>Eliminación + BFS – O(V·(V + E))</td><td>Usa solo BFS de la G7. Con unos 40 nodos el costo es despreciable y el método es fácil de explicar y verificar.</td></tr>
+  </tbody>
+</table>
+<p class="small">Algoritmos especializados que quedan fuera del alcance por no formar parte de las guías: Yen (k rutas más cortas), Dinic (flujo máximo), A*, Hopcroft-Tarjan (puntos de articulación) y el algoritmo de Johnson para enumerar ciclos (distinto del Johnson de rutas más cortas de la G9).</p>
+
+<!-- ====================== 9. DATOS ====================== -->
+<h2>9. Datos simulados</h2>
+<p>No se cuenta con datos reales de una entidad financiera, por lo que todos los datos serán <b>simulados</b>. Para que representen condiciones verosímiles, se construirán a partir de referencias públicas y se generarán con una <b>semilla aleatoria fija</b>, de modo que cualquier persona pueda reproducir exactamente los mismos datos.</p>
+<h3>9.1 Referencias para construir los datos</h3>
+<table>
+  <thead><tr><th style="width:34%">Dato simulado</th><th>Referencia pública</th></tr></thead>
+  <tbody>
+    <tr><td>Distancias y tiempos entre ciudades</td><td>Rutas reales consultadas en mapas e información de transporte ferroviario.</td></tr>
+    <tr><td>Demanda de efectivo por agencia</td><td>Proporcional a la población por provincia (INEI).</td></tr>
+    <tr><td>Aumento de demanda en temporada alta</td><td>Llegadas de turistas por mes (MINCETUR y fuentes de turismo regional).</td></tr>
+    <tr><td>Cantidad de agencias, cajeros y agentes</td><td>Indicadores de inclusión financiera publicados por la SBS.</td></tr>
+    <tr><td>Patrones de fraude y lavado</td><td>Tipologías de lavado de activos publicadas por la UIF-Perú.</td></tr>
+    <tr><td>Comisiones y tiempos de los canales</td><td>Órdenes de magnitud de tarifarios públicos de entidades financieras; los valores exactos serán supuestos.</td></tr>
+  </tbody>
+</table>
+<h3>9.2 Archivos de datos previstos</h3>
+<table>
+  <thead><tr><th style="width:24%">Archivo</th><th>Contenido</th><th style="width:27%">Tamaño aproximado</th></tr></thead>
+  <tbody>
+    <tr><td>nodos (CSV o JSON)</td><td>Identificador, tipo, nombre, provincia, coordenadas, oferta, capacidad de almacenamiento, demanda normal y en temporada alta</td><td>Unos 40 nodos físicos</td></tr>
+    <tr><td>rutas físicas (CSV)</td><td>Origen, destino, tipo de vía (carretera o tren), distancia, tiempo, riesgo</td><td>Red vial y ferroviaria</td></tr>
+    <tr><td>transacciones (CSV)</td><td>Origen, destino, monto, fecha y hora, canal</td><td>300 – 500 cuentas; 3 000 – 10 000 transacciones con patrones insertados</td></tr>
+    <tr><td>retiros en cajeros (CSV)</td><td>Tarjeta, cajero, fecha y hora, monto</td><td>700 – 800 retiros con casos de viaje imposible insertados</td></tr>
+    <tr><td>titularidad (CSV)</td><td>Cliente, cuenta</td><td>Una fila por cuenta</td></tr>
+    <tr><td>red de enrutamiento (CSV)</td><td>Origen, destino, canal, comisión fija, comisión %, bonificación, tiempo, límite, disponibilidad</td><td>30 – 50 canales, más dos variantes de campaña (cashback y ruleteo)</td></tr>
+    <tr><td>distribución de liquidez (CSV)</td><td>Origen, destino, capacidad, costo por unidad, tiempo, riesgo</td><td>Rutas físicas de la red</td></tr>
+    <tr><td>redes sintéticas (generador)</td><td>Grafos aleatorios con semilla fija para las pruebas de escalabilidad</td><td>100, 500, 1 000 y 2 000 nodos; dispersos y densos</td></tr>
+  </tbody>
+</table>
+<p>Los patrones sospechosos (pitufeo, ciclos, cuentas puente, capas de estratificación, viaje imposible) se <b>insertarán intencionalmente</b> dentro de transacciones normales. Así, cada caso de prueba tendrá un resultado esperado conocido, lo que permite verificar si el sistema los detecta.</p>
+
+<!-- ====================== 10. ALCANCE ====================== -->
+<h2>10. Alcance y limitaciones</h2>
+<h4>Alcance</h4>
+<ul>
+  <li>Modelamiento de la red de la CMA en el departamento de Cusco, con conexiones hacia entidades externas y Lima.</li>
+  <li>Implementación de los cinco módulos funcionales sobre una representación común del grafo, usando los algoritmos de las guías 7 a 11.</li>
+  <li>Escenarios de temporada normal, temporada alta (Inti Raymi) y contingencia (cierre de Abra Málaga).</li>
+  <li>Interfaz de terminal interactiva, ejecutable con <code>python main.py</code>.</li>
+</ul>
+<h4>Limitaciones</h4>
+<ul>
+  <li>La entidad y todos sus datos son simulados; los resultados ilustran el método y no describen una institución real.</li>
+  <li>La red física se simplifica: se consideran las rutas principales y no todas las vías existentes.</li>
+  <li>Las capacidades de transporte (en especial las de los tramos ferroviarios) son supuestos del modelo.</li>
+  <li>El cálculo de comisiones supone que se cobran aparte al ordenante; otros esquemas de cobro requerirían otro modelo de costo.</li>
+  <li>La enumeración de rutas alternativas con DFS es exponencial en el peor caso; se acota por número de saltos y por costo.</li>
+  <li>Al restringirse a los algoritmos del curso, algunas soluciones no son las asintóticamente más rápidas conocidas (por ejemplo, puntos críticos en O(V·(V + E)) en lugar de O(V + E)); la diferencia es irrelevante para el tamaño de la red física.</li>
+  <li>La detección de patrones genera alertas para revisión; no constituye prueba de fraude ni de lavado de activos.</li>
+  <li>El análisis es estático por escenario; no se modela la evolución continua de la red en el tiempo.</li>
+</ul>
+
+<!-- ====================== 11. HECHOS Y SUPUESTOS ====================== -->
+<h2>11. Hechos reales y supuestos del modelo</h2>
+<p>Para cumplir con la exigencia de justificar los datos simulados, el informe distinguirá siempre entre información pública y supuestos propios.</p>
+<table>
+  <thead><tr><th style="width:13%">Tipo</th><th>Elemento</th></tr></thead>
+  <tbody>
+    <tr><td><span class="tag real">Real</span></td><td>Provincias, ciudades y rutas principales del departamento de Cusco (Abra Málaga, Interoceánica, ruta Cusco – Urcos – Sicuani).</td></tr>
+    <tr><td><span class="tag real">Real</span></td><td>Machupicchu Pueblo no tiene acceso por carretera; se llega en tren desde Ollantaytambo o desde la Hidroeléctrica.</td></tr>
+    <tr><td><span class="tag real">Real</span></td><td>Temporada alta turística (junio – agosto), Inti Raymi (24 de junio) y temporada de lluvias con huaicos.</td></tr>
+    <tr><td><span class="tag real">Real</span></td><td>Actividad aurífera informal en el corredor de Quincemil (Camanti) y distritos de La Convención dentro del VRAEM.</td></tr>
+    <tr><td><span class="tag real">Real</span></td><td>Existencia de cajas municipales supervisadas por la SBS, cámaras de compensación, billeteras digitales y tipologías de lavado de la UIF-Perú.</td></tr>
+    <tr><td><span class="tag real">Real</span></td><td>Los algoritmos de grafos utilizados y sus complejidades teóricas.</td></tr>
+    <tr><td><span class="tag sup">Supuesto</span></td><td>La Caja Municipal Andina, su red de bóvedas, agencias, cajeros y agentes.</td></tr>
+    <tr><td><span class="tag sup">Supuesto</span></td><td>Cuentas, clientes, transacciones, montos, comisiones, bonificaciones, tiempos de canales y demanda de efectivo.</td></tr>
+    <tr><td><span class="tag sup">Supuesto</span></td><td>Regla de cobro de comisiones (aparte al ordenante) y umbrales de detección de patrones (montos, ventanas de tiempo).</td></tr>
+    <tr><td><span class="tag sup">Supuesto</span></td><td>Capacidades de transporte por ruta, incluidos los límites de traslado de efectivo en tren, y capacidades de almacenamiento de las bóvedas.</td></tr>
+    <tr><td><span class="tag sup">Supuesto</span></td><td>Los casos de fraude y lavado insertados en los datos.</td></tr>
+    <tr><td><span class="tag sup">Supuesto</span></td><td>El escenario de cierre de Abra Málaga por huaico (verosímil, pero hipotético).</td></tr>
+  </tbody>
+</table>
+
+<!-- ====================== 12. FUENTES ====================== -->
+<h2>12. Fuentes de referencia</h2>
+<p class="small">Las cifras que se tomen de estas fuentes deberán verificarse y citarse con su fecha de consulta en el informe técnico final.</p>
+<ul class="refs">
+  <li>Rojas Pedraza, K. C. (2026). <i>Proyecto II – Sistema de Análisis y Optimización de Redes Financieras.</i> Programación III.</li>
+  <li>Programación III (2026). Guías de laboratorio 7 (BFS y DFS), 8 (árboles de expansión mínima: Prim y Kruskal), 9 (rutas más cortas: Dijkstra, Bellman-Ford, Johnson), 10 (Floyd-Warshall) y 11 (flujo máximo: Ford-Fulkerson y corte mínimo).</li>
+  <li>Superintendencia de Banca, Seguros y AFP (SBS). Indicadores de inclusión financiera y normativa sobre cajas municipales. https://www.sbs.gob.pe</li>
+  <li>Unidad de Inteligencia Financiera del Perú (UIF-Perú). Tipologías de lavado de activos. https://www.sbs.gob.pe/prevencion-de-lavado-activos</li>
+  <li>Instituto Nacional de Estadística e Informática (INEI). Población por departamento y provincia. https://www.inei.gob.pe</li>
+  <li>Ministerio de Comercio Exterior y Turismo (MINCETUR). Estadísticas de llegadas de turistas. https://www.mincetur.gob.pe</li>
+  <li>PeruRail. Rutas y destinos: Hidroeléctrica – Machu Picchu. https://www.perurail.com/destinations/hidroelectrica/</li>
+  <li>Andina – Agencia Peruana de Noticias. Notas sobre el sistema de cajas municipales. https://andina.pe</li>
+  <li>Cormen, T. H., Leiserson, C. E., Rivest, R. L. y Stein, C. (2022). <i>Introduction to Algorithms</i> (4.ª ed.). MIT Press.</li>
+  <li>Kleinberg, J. y Tardos, É. (2006). <i>Algorithm Design.</i> Pearson.</li>
+</ul>
+
+</body>
+</html>

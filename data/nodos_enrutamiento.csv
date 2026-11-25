@@ -1,0 +1,23 @@
+id,nombre,tipo
+CTA_CMA_QUI,Cuenta CMA del comerciante de café (Quillabamba),cuenta
+CTA_CMA_CUS,Cuenta CMA de un cliente (Cusco),cuenta
+CTA_CMA_LIMA,Cuenta CMA - oficina Lima,cuenta
+CTA_BX_LIMA,Cuenta del proveedor en Banco X (Lima),cuenta
+CTA_BY_CUS,Cuenta en Banco Y (Cusco),cuenta
+CTA_REST_MPP,Cuenta CMA del restaurante (Machupicchu Pueblo),cuenta
+CCE_DIF,Cámara de compensación - transferencia diferida,compensacion
+CCE_INM,Cámara de compensación - transferencia inmediata,compensacion
+INTERPLAZA,Transferencia interplaza CMA,canal
+BILL_A,Billetera digital A,billetera
+BILL_B,Billetera digital B,billetera
+EFECTIVO_QUI,Efectivo en mano (Quillabamba),efectivo
+AG_BX_QUI,Agencia Banco X (Quillabamba),agencia_externa
+TC_EXT,Tarjeta de crédito extranjera (turista),tarjeta
+PROC_TARJ,Procesador de tarjetas,procesador
+ATM_CMA_MPP,Cajero CMA (Machupicchu Pueblo),cajero
+ATM_RED_MPP,Cajero de otra red (Machupicchu Pueblo),cajero
+EFECTIVO_MPP,Efectivo en mano (Machupicchu Pueblo),efectivo
+TD_CMA_CUS,Tarjeta de débito CMA (cliente en Cusco),tarjeta
+ATM_CMA_LEJOS,Cajero CMA más lejano (Av. El Sol),cajero
+ATM_RED_CERCA,Cajero de otra red cercano,cajero
+EFECTIVO_CLIENTE,Efectivo en mano (cliente en Cusco),efectivo

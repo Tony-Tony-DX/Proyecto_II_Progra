@@ -1,0 +1,9 @@
+# Los algoritmos usan solo la biblioteca estándar (heapq, collections, math).
+# matplotlib se usa únicamente para las imágenes PNG de los reportes; la
+# interfaz gráfica funciona aunque no esté instalado.
+#
+# Se indican versiones mínimas para que funcione en Python 3.9 a 3.15.
+# Versiones con las que se probó: matplotlib 3.9.4 / 3.11.2 y pytest 8.x / 9.2.0
+# (Python 3.9.13 y 3.15.0 en Windows 11).
+matplotlib>=3.5
+pytest>=7.0

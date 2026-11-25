@@ -1,0 +1,33 @@
+origen,destino,canal,comision_fija,comision_pct,bonificacion,tiempo_min,limite,disponible
+CTA_CMA_QUI,CCE_DIF,Transferencia interbancaria diferida,3.50,0,0,5,300000,1
+CCE_DIF,CTA_BX_LIMA,Abono diferido (siguiente ciclo de compensación),0,0,0,1440,300000,1
+CTA_CMA_QUI,CCE_INM,Transferencia interbancaria inmediata,8.00,0,0,1,30000,1
+CCE_INM,CTA_BX_LIMA,Abono inmediato,0,0,0,1,30000,1
+CTA_CMA_QUI,INTERPLAZA,Transferencia interplaza CMA,0,0.50,0,10,100000,1
+INTERPLAZA,CTA_CMA_LIMA,Abono interplaza,0,0,0,30,100000,1
+CTA_CMA_LIMA,CCE_INM,Transferencia inmediata misma plaza,2.00,0,0,1,30000,1
+CTA_CMA_LIMA,CCE_DIF,Transferencia diferida misma plaza,1.00,0,0,5,300000,1
+CTA_CMA_QUI,BILL_A,Recarga de billetera,0,0,0,1,2000,1
+BILL_A,CTA_BX_LIMA,Retiro de billetera a cuenta bancaria,0,0.15,0,10,2000,1
+BILL_A,BILL_B,Interoperabilidad entre billeteras,0,0,0,1,500,1
+BILL_B,CTA_BX_LIMA,Retiro de billetera a cuenta bancaria,0,0,0,5,1000,1
+CTA_CMA_QUI,EFECTIVO_QUI,Retiro en ventanilla,0,0,0,20,50000,1
+EFECTIVO_QUI,AG_BX_QUI,Depósito en ventanilla a cuenta de otra plaza,0,0.60,0,30,100000,1
+AG_BX_QUI,CTA_BX_LIMA,Abono de depósito,0,0,0,60,100000,1
+CTA_CMA_CUS,CCE_INM,Transferencia interbancaria inmediata,8.00,0,0,1,30000,1
+CTA_CMA_CUS,CCE_DIF,Transferencia interbancaria diferida,3.50,0,0,5,300000,1
+CTA_CMA_CUS,BILL_A,Recarga de billetera,0,0,0,1,2000,1
+CCE_INM,CTA_BY_CUS,Abono inmediato,0,0,0,1,30000,1
+CCE_DIF,CTA_BY_CUS,Abono diferido,0,0,0,1440,300000,1
+BILL_B,CTA_BY_CUS,Retiro de billetera a cuenta bancaria,0,0,0,5,1000,1
+TC_EXT,PROC_TARJ,Pago con tarjeta extranjera en POS,0,3.50,0,1,10000,1
+PROC_TARJ,CTA_REST_MPP,Liquidación al comercio,0,0,0,2880,10000,1
+TC_EXT,ATM_CMA_MPP,Retiro con tarjeta extranjera en cajero CMA,18.00,2.00,0,5,700,1
+ATM_CMA_MPP,EFECTIVO_MPP,Entrega de efectivo,0,0,0,1,700,1
+TC_EXT,ATM_RED_MPP,Retiro con tarjeta extranjera en cajero de otra red,22.00,2.00,0,3,1000,1
+ATM_RED_MPP,EFECTIVO_MPP,Entrega de efectivo,0,0,0,1,1000,1
+EFECTIVO_MPP,CTA_REST_MPP,Pago en efectivo y depósito del comercio,0,0,0,2,100000,1
+TD_CMA_CUS,ATM_CMA_LEJOS,Retiro en cajero propio (25 min a pie),0,0,0,25,1500,1
+ATM_CMA_LEJOS,EFECTIVO_CLIENTE,Entrega de efectivo,0,0,0,1,1500,1
+TD_CMA_CUS,ATM_RED_CERCA,Retiro en cajero de otra red,7.50,0,0,3,1000,1
+ATM_RED_CERCA,EFECTIVO_CLIENTE,Entrega de efectivo,0,0,0,1,1000,1

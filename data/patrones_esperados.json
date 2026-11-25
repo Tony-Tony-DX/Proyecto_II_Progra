@@ -1,0 +1,35 @@
+{
+  "pitufeo": {
+    "destino": "E_ORO01",
+    "origenes": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ]
+  },
+  "ciclo": [
+    "E_COM1",
+    "E_COM2",
+    "E_COM3",
+    "E_COM4"
+  ],
+  "cuenta_puente": "B_PUENTE01",
+  "estratificacion": {
+    "origen": "LY_ORIG",
+    "final": "LY_FINAL",
+    "capas": 3
+  },
+  "viaje_imposible": [
+    "T9001",
+    "T9002"
+  ],
+  "viaje_legitimo": [
+    "T0250"
+  ],
+  "umbral_monto": 3000
+}

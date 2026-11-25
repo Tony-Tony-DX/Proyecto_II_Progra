@@ -1,0 +1,41 @@
+origen,destino,tipo_via,distancia_km,tiempo_h,riesgo,nombre
+CUS_BC,CUS_CEN,carretera,3,0.15,1,Urbano Cusco
+CUS_BC,CUS_WAN,carretera,1,0.10,1,Urbano Cusco
+CUS_BC,SSB,carretera,4,0.20,1,Urbano Cusco
+CUS_BC,SAN,carretera,4,0.20,2,Urbano Cusco
+SSB,SJE,carretera,6,0.25,1,Urbano Cusco
+CUS_CEN,ATM_PLZ,carretera,0.5,0.05,1,Urbano Cusco
+CUS_CEN,ATM_SOL,carretera,1,0.05,1,Urbano Cusco
+SSB,ATM_AER,carretera,2,0.10,1,Urbano Cusco
+CUS_BC,ANT,carretera,28,0.60,3,Cusco - Anta
+ANT,LMT,carretera,50,1.10,5,Anta - Limatambo
+CUS_BC,CHI,carretera,28,0.60,3,Cusco - Chinchero
+CHI,URU_BR,carretera,23,0.50,4,Chinchero - Urubamba
+CUS_BC,PIS,carretera,33,0.80,3,Cusco - Pisac
+PIS,CAL,carretera,18,0.40,3,Pisac - Calca
+CAL,URU_BR,carretera,22,0.50,3,Calca - Urubamba
+PIS,PAU,carretera,75,2.20,6,Pisac - Huambutío - Paucartambo
+URU_BR,URU_AG,carretera,1,0.05,1,Urbano Urubamba
+URU_AG,ATM_URU,carretera,0.3,0.05,1,Urbano Urubamba
+URU_BR,OLL,carretera,20,0.50,3,Urubamba - Ollantaytambo
+OLL,ATM_OLL,carretera,0.3,0.05,1,Urbano Ollantaytambo
+OLL,MPP,tren,43,2.50,2,Tren Ollantaytambo - Machupicchu (incluye espera)
+MPP,ATM_MPP,carretera,0.3,0.05,1,Urbano Machupicchu
+MPP,HID,tren,11,1.20,3,Tren Machupicchu - Hidroeléctrica (incluye espera)
+HID,STE,carretera,10,0.40,5,Hidroeléctrica - Santa Teresa
+STE,SMA,carretera,25,1.00,6,Santa Teresa - Santa María
+OLL,SMA,carretera,125,4.00,8,Abra Málaga
+SMA,QUI_BR,carretera,30,0.80,4,Santa María - Quillabamba
+QUI_BR,QUI_AG,carretera,1,0.05,1,Urbano Quillabamba
+QUI_BR,ECH,carretera,30,0.80,5,Quillabamba - Echarati
+CUS_BC,URC,carretera,47,1.00,3,Cusco - Urcos
+URC,OCO,carretera,80,1.80,5,Interoceánica
+OCO,AGT_MCP,carretera,75,2.00,7,Interoceánica
+AGT_MCP,QCM,carretera,70,2.00,8,Interoceánica
+URC,COM,carretera,60,1.20,3,Cusco - Sicuani
+COM,SIC_BR,carretera,25,0.50,3,Cusco - Sicuani
+COM,YAN,carretera,25,0.60,4,Combapata - Yanaoca
+SIC_BR,SIC_AG,carretera,1,0.05,1,Urbano Sicuani
+SIC_AG,ATM_SIC,carretera,0.3,0.05,1,Urbano Sicuani
+SIC_BR,YAU,carretera,140,2.80,5,Sicuani - Yauri
+YAU,STO,carretera,150,4.00,6,Yauri - Santo Tomás

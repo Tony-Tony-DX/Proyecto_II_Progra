@@ -1,0 +1,2 @@
+origen,destino,canal,comision_fija,comision_pct,bonificacion,tiempo_min,limite,disponible
+BILL_A,BILL_B,Interoperabilidad entre billeteras (campaña CyberDays: cashback S/ 4),0,0,4.00,1,500,1
